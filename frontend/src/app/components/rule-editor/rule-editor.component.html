@@ -1,0 +1,17 @@
+<div class="rule-editor">
+  <h2>Rule Editor</h2>
+  <div class="new-rule">
+    <input [(ngModel)]="newRule.name" placeholder="Rule name">
+    <textarea [(ngModel)]="newRule.content" placeholder="Rule content"></textarea>
+    <button (click)="createRule()">Create Rule</button>
+  </div>
+  <div class="rule-list">
+    <div *ngFor="let rule of rules" class="rule-item">
+      <h3>{{rule.name}}</h3>
+      <textarea [(ngModel)]="rule.content"></textarea>
+      <button (click)="updateRule(rule)">Update</button>
+      <button (click)="deleteRule(rule)">Delete</button>
+    </div>
+  </div>
+  <button (click)="applyRules()">Apply Rules</button>
+</div>

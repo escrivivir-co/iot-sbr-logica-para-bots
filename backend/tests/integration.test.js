@@ -6,7 +6,7 @@ describe('Rule API Integration Tests', () => {
   let db;
 
   beforeAll(() => {
-    db = new sqlite3.Database('./database.sqlite');
+    db = new sqlite3.Database('./database-test.sqlite');
   });
 
   afterAll((done) => {

@@ -27,9 +27,13 @@ const db = new sqlite3.Database('./database.sqlite', (err) => {
   } else {
     logger.info('Connected to SQLite database');
     // Create the rules table if it doesn't exist
-    db.run(`CREATE TABLE IF NOT EXISTS rules (
+    db.run(`CREATE TABLE IF NOT EXISTS rulesControl (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
-      text TEXT NOT NULL
+	  predicate TEXT NOT NULL,
+	  arity TEXT NOT NULL,
+	  example TEXT NOT NULL,
+	  evalCompatible TEXT NOT NULL,
+	  app TEXT NOT NULL
     )`);
 
     // Add the simple test query

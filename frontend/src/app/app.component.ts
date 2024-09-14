@@ -7,20 +7,26 @@ import { RuleListComponent } from './components/rule-list/rule-list.component';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Prolog Rule Management';
+  	title = 'Prolog Rule Management';
+	theApp: any =  { app: '' };
 
-  @ViewChild(RuleListComponent) ruleListComponent!: RuleListComponent;
+	@ViewChild(RuleListComponent) ruleListComponent!: RuleListComponent;
 
-  onRuleSaved() {
-    // Trigger a refresh of the rule list
-    this.refreshRuleList();
-  }
+	onRuleSaved(rule: any) {
+		// Trigger a refresh of the rule list
+		console.log("On saved", rule)
+		this.refreshRuleList(rule?.app);
+	}
 
-  refreshRuleList() {
-    // Get a reference to the RuleListComponent
-    const ruleListComponent = this.ruleListComponent;
-    if (ruleListComponent) {
-      ruleListComponent.loadRules();
-    }
-  }
+	appSelected(app: string) {
+		// Trigger a refresh of the rule list
+		console.log("On appSelected", app)
+		this.refreshRuleList(app);
+	}
+
+	refreshRuleList(app: string) {
+		this.theApp = {
+			app
+		};
+	}
 }

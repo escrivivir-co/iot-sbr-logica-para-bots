@@ -1,0 +1,6 @@
+{
+	"name": "Iot App",
+	"description": "Manages IoT device with Prolog engine",
+	"main": "iot-app",
+	"files": ["."]
+}

@@ -6,7 +6,8 @@ import { PrologService } from '../../services/prolog.service';
             "predicate": "do_init",
             "arity": 2,
             "example": "do_init(Arg1, Arg2)",
-            "evalCompatible": "eval(\"do_init(Arg1, Arg2)\")"
+            "evalCompatible": "eval(\"do_init(Arg1, Arg2)\")",
+			"app": "app-id"
 }
 */
 @Component({
@@ -15,14 +16,15 @@ import { PrologService } from '../../services/prolog.service';
   styleUrls: ['./rule-editor.component.css']
 })
 export class RuleEditorComponent implements OnInit {
-  ruleText: string = '';
-  result: string = '';
-  sdkTemplates: string[] = [];
-  selectedTemplate: string = '';
-  @Output() ruleSaved = new EventEmitter<void>();
+  	ruleText: string = '';
+  	result: string = '';
+  	sdkTemplates: any[] = [];
+  	selectedTemplate: any = {};
+  	@Output() ruleSaved = new EventEmitter<any>();
+	@Output() appSelected = new EventEmitter<string>();
 
-  rules: any[] = [];
-
+  	rules: any[] = [];
+	rule = {};
   constructor(private prologService: PrologService) {}
 
   ngOnInit() {
@@ -32,6 +34,7 @@ export class RuleEditorComponent implements OnInit {
   loadSdkTemplates() {
     this.prologService.getSdkTemplates().subscribe(
       (templates) => {
+		console.log("loading templtes", templates[0]?.name)
         this.sdkTemplates = templates;
       },
       (error) => {
@@ -41,30 +44,36 @@ export class RuleEditorComponent implements OnInit {
   }
 
   onTemplateSelect() {
+
     if (this.selectedTemplate) {
-      this.prologService.getTemplateContent(this.selectedTemplate).subscribe(
-        (response) => {
-          this.rules = response.content as unknown as any[];
-        },
-        (error) => {
-          console.error('Error loading template content:', error);
-        }
-      );
+		console.log("", this.selectedTemplate)
+		this.prologService.getTemplateContent(this.selectedTemplate).subscribe(
+		(response) => {
+			this.rules = response.content as unknown as any[];
+			this.appSelected.emit(this.selectedTemplate)
+		},
+		(error) => {
+			console.error('Error loading template content:', error);
+		}
+		);
     }
   }
 
-  saveRule() {
-    this.prologService.saveRule(this.ruleText).subscribe(
-      (response) => {
-        this.result = 'Rule saved successfully';
-        this.ruleText = '';
-        this.ruleSaved.emit();
-      },
-      (error) => {
-        this.result = 'Error saving rule: ' + error.message;
-      }
-    );
-  }
+	saveRule() {
+
+		console.log("save rule", this.rule)
+		this.prologService.saveRule(this.rule).subscribe(
+			(response) => {
+			this.result = 'Rule saved successfully';
+			this.ruleText = '';
+			this.ruleSaved.emit(this.rule);
+			},
+			(error) => {
+			this.result = 'Error saving rule: ' + error.message;
+			}
+		);
+
+  	}
 
   runRule() {
     this.prologService.runRule(this.ruleText).subscribe(
@@ -108,7 +117,7 @@ export class RuleEditorComponent implements OnInit {
   }
 
   kitSave(rule: any, event: any) {
-	this.ruleText = rule.evalCompatible;
+	this.rule = rule;
 	this.saveRule();
   }
 }

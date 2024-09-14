@@ -1,7 +1,9 @@
-:- use_module('../sdk/sdk.pl', [activar_sdk/0, thing/4, regla/5, sensor/7]).
-:- use_module('../sdk/modulos/dominio/thing.pl', [imprimir_kit/0]).
-:- use_module('../sdk/modulos/dominio/sensor.pl', [sensor_valor_actual_guardar/2, sensor_valor_actual_guardar/3]).
-:- use_module('../sdk/modulos/simulador/simulador.pl', [parar/0]).
+:- module(app, [inicializarMaquina/1, imprimir_reglas/1, imprimir_reglas_json/1, imprimir_kit/0, imprimir_kit_json/1, sensor_valor_actual_guardar/2]).
+
+:- use_module('sdk/sdk.pl', [activar_sdk/0, thing/4, regla/5, sensor/7, imprimir_reglas/1, imprimir_reglas_json/1, imprimir_kit/0, imprimir_kit_json/1]).
+:- use_module('sdk/modulos/dominio/thing.pl', []).
+:- use_module('sdk/modulos/dominio/sensor.pl', [sensor_valor_actual_guardar/2, sensor_valor_actual_guardar/3]).
+:- use_module('sdk/modulos/simulador/simulador.pl', [parar/0]).
 :- use_module(library(random)).
 
 % Constantes para los dispositivos
@@ -118,7 +120,13 @@ inicializar_reglas :-
 % *********************************************************
 % * Arranque de aplicación
 % *********************************************************
-:- format('[Modulo: Aplicación] ~n', []),
-    inicializar_things,
+% :- format('[Modulo: Aplicación] ~n', []),
+    % inicializar_things,
+    % inicializar_reglas,
+    % activar_sdk.
+
+inicializarMaquina(Result) :-
+	inicializar_things,
     inicializar_reglas,
-    activar_sdk.
+	imprimir_reglas(Result). %,
+    % activar_sdk.

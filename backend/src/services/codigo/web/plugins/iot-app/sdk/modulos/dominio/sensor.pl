@@ -12,7 +12,9 @@ sensor_valor_actual(Id, Valor) :-
     sensor(Id, _, _, _, Valor, _, _).
 
 sensor_valor_actual_guardar(Id, NuevoValor) :-
+	format('[Modulo: Actualizar: (~w)] ~n', [Id]),
     sensor(Id, Nombre, Descripcion, Unidad, _, ValorConsigna, ValorIncremento),
+	format('[Modulo: Encontrado: (~w, ~w)] ~n', [Id, Nombre]),
     retract(sensor(Id, _, _, _, _, _, _)),
     assert(sensor(Id, Nombre, Descripcion, Unidad, NuevoValor, ValorConsigna, ValorIncremento)).
 

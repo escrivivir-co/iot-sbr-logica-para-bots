@@ -1,0 +1,6 @@
+{
+	"name": "State Machine",
+	"description": "Control basic StateMachine with Prolog engine",
+	"main": "state-machine",
+	"files": ["."]
+}

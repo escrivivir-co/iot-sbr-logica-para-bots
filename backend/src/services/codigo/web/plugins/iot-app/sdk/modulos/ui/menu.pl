@@ -1,6 +1,6 @@
 :- module(menu, [menu/0, submenu/1, submenu_opcion/2]).
 :- use_module('../simulador/simulador.pl', [iniciar_simulador_temporizador/0]).
-:- use_module('../../sdk.pl', [imprimir_kit/0, imprimir_reglas/0]).
+:- use_module('../../sdk.pl', [imprimir_kit/0, imprimir_reglas/1]).
 
 % ******************** SDK/UI/MENU *****************************
 % * Ejecutar prolog? menu. *
@@ -21,7 +21,7 @@ submenu(1, 1, 'Simular desde punto de restauración [No implementado]', simular_
 % Activadores de pantallas
 arrancar_interfaz :- writeln('Interfaz iniciada.').
 interfaz_imprimir_kit :- imprimir_kit, manejar_opcion(0).
-interfaz_imprimir_reglas :- imprimir_reglas, manejar_opcion(0).
+interfaz_imprimir_reglas :- imprimir_reglas(Result), manejar_opcion(0).
 arrancar_simulador :- writeln('Simulador iniciado.').
 simular_inicio :- writeln('Simulación iniciada desde el principio.'),
     iniciar_simulador_temporizador.

@@ -5,8 +5,7 @@ const templateService = require('../services/template-service');
 
 exports.saveRule = async (req, res) => {
   try {
-    const { text } = req.body;
-    const rule = await Rule.create(text);
+    const rule = await Rule.create(req.body);
     res.status(201).json(rule);
   } catch (error) {
     logger.error('Error saving rule:', error);
@@ -17,7 +16,8 @@ exports.saveRule = async (req, res) => {
 exports.getRules = async (req, res) => {
   try {
 	console.log("Prolog service", "Send query to server database...")
-    const rules = await Rule.getAll();
+	const { id } = req.params;
+    const rules = await Rule.getAll(id);
     res.json(rules);
   } catch (error) {
     console.log("PrologoController", error)
@@ -55,6 +55,7 @@ exports.runRule = async (req, res) => {
 exports.getSdkTemplates = async (req, res) => {
   try {
     const templates = await templateService.getSdkTemplates();
+	// console.log("Return templates", templates)
     res.json(templates);
   } catch (error) {
     logger.error('Error getting SDK templates:', error);

@@ -1,1 +1,53 @@
 /* Add any component-specific styles here */
+
+small {
+	font-size: 90%;
+}
+.ResTable {
+	width: 100%;
+	overflow-x: auto; /* Prevent overflow by making the table scrollable horizontally if necessary */
+	margin: 20px 0;
+	border-radius: 10px;
+	box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .ResTable table {
+	width: 100%;
+	border-collapse: collapse;
+	border-spacing: 0;
+	border-radius: 10px;
+  }
+  
+  .ResTable th, .ResTable td {
+	padding: 12px 15px;
+	text-align: left;
+  }
+  
+  .ResTable th {
+	background-color: #f4f4f4;
+	color: #333;
+	font-weight: bold;
+	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+	border-bottom: 3px solid #ddd;
+	box-shadow: inset 0px -1px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .ResTable td {
+	border-bottom: 1px solid #ddd;
+	background-color: #fff;
+	box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .ResTable tr:hover {
+	background-color: #f9f9f9;
+  }
+  
+  .ResTable table, .ResTable th, .ResTable td {
+	border: 1px solid #ddd;
+  }
+  
+  .ResTable table {
+	border: 2px solid #ccc;
+  }
+  
+  

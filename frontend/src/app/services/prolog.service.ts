@@ -8,32 +8,35 @@ import { environment } from '../../environments/environment';
 })
 export class PrologService {
   private apiUrl = environment.apiUrl;
+	templateName: string = "";
 
   constructor(private http: HttpClient) {
 	console.log(this.apiUrl,  window.location.hostname)
   }
 
-  saveRule(ruleText: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/rules`, { text: ruleText });
+  saveRule(rule: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/rules`, rule);
   }
 
   runRule(ruleText: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/run-rule`, { text: ruleText });
   }
 
-  getRules(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/rules`);
+  getRules(app: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/rules/${app}`);
   }
 
   deleteRule(id: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/rules/${id}`);
   }
 
-  getSdkTemplates(): Observable<string[]> {
-    return this.http.get<string[]>(`${this.apiUrl}/sdk-templates`);
+  getSdkTemplates(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/sdk-templates`);
   }
 
   getTemplateContent(templateName: string): Observable<{content: string}> {
+	console.log("Send", templateName)
+	this.templateName = templateName;
     return this.http.get<{content: string}>(`${this.apiUrl}/template/${templateName}`);
   }
 }

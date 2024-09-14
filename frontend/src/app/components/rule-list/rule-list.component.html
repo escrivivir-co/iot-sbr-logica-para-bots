@@ -1,6 +1,6 @@
 <div class="card">
   <div class="card-header">
-    Rule List
+    Rule List {{ theApp.app }}
   </div>
   <div class="card-body">
     <ul class="list-group">
@@ -14,14 +14,54 @@
 					<button class="btn btn-danger btn-sm" (click)="deleteRule(rule.id)">D</button>
 				</td>
 				<td colspan="2" style="padding-left: 10px;">
-					{{ rule.text }}
+					{{ rule.evalCompatible }}
 				</td>
 			</tr>
 		</table>
       </li>
     </ul>
-	<div class="mt-3" *ngIf="result">
-		{{ result.status }}: {{ getResultText() }}
+	<div id="ResTable" class="mt-12" *ngIf="result">
+		<!--{{ data.length }} {{ objectKeys.length }}
+		{{ result.status }}: {{ getResultText() }}-->
+
+		<table *ngIf="data && data.length > 0" class="small">
+			<thead>
+			  <tr>
+				<th *ngFor="let key of objectKeys()">{{ key }}</th>
+			  </tr>
+			</thead>
+			<tbody>
+			  <tr *ngFor="let item of data">
+				<td *ngFor="let key of objectKeys()">
+
+					<div *ngIf="isObject(item[key])" class="small">
+
+							<table *ngIf="item[key] && item[key].length > 0" class="small">
+								<thead>
+									<tr>
+										<th *ngFor="let key of objectKeysFalt(item[key])">{{ key }}</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr><td>{{ item[key].length }}</td></tr>
+									<tr *ngFor="let subitem of item[key]">
+										<td *ngFor="let subKey of objectKeysFalt(item[key])">
+
+											{{ escapeHtml(subitem[subKey]) }}
+										</td>
+									</tr>
+								</tbody>
+							</table>
+					</div>
+
+					<div *ngIf="!isObject(item[key])" class="small">
+						{{ item[key] }}
+					</div>
+				</td>
+			  </tr>
+			</tbody>
+		</table>
+		  <p *ngIf="!data || data.length === 0">No data available</p>
 	</div>
   </div>
 </div>

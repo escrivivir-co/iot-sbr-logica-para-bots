@@ -1,13 +1,14 @@
 const fs = require('fs');
 const path = require('path');
 
-const APP_PATH = path.join(__dirname, 'codigo/sdk/modulos/web');
+const APP_PATH = path.join(__dirname, 'codigo/web/plugins/');
 
 class PrologParser {
 
 	constructor(filePath) {
 
-        this.filePath = path.join(APP_PATH, filePath);
+        this.filePath = path.join(APP_PATH, filePath, 'app.pl');
+		console.log("The file path", this.filePath)
         this.prologCode = '';
         this.exports = [];
     }
@@ -24,7 +25,7 @@ class PrologParser {
     async loadPrologFile() {
         return new Promise((resolve, reject) => {
             fs.readFile(this.filePath, 'utf8', (err, data) => {
-				console.log(this.filePath, data)
+				console.log("Parsing", this.filePath)
                 if (err) {
                     return reject(err);
                 }
@@ -45,9 +46,9 @@ class PrologParser {
     }
 
     // Generar una lista de objetos JSON con llamadas de ejemplo para eval
-    generateJsonExamples() {
+    generateJsonExamples(templateName) {
         return this.exports.map((exp) => {
-			console.log("El export", exp)
+			// console.log("El export", exp)
             const [name, arity] = exp.split('/');
             const args = Array.from({ length: parseInt(arity, 10) }, (_, i) => `Arg${i + 1}`);
             const exampleCall = `${name}(${args.join(', ')})`;
@@ -55,16 +56,17 @@ class PrologParser {
                 predicate: name,
                 arity: parseInt(arity, 10),
                 example: exampleCall,
-                evalCompatible: `eval("${exampleCall}")`
+                evalCompatible: `eval("${exampleCall}")`,
+				app: templateName
             };
         });
     }
 
     // Ejecutar el proceso completo: leer fichero, extraer exports, generar JSON
-    async parseFile() {
+    async parseFile(templateName) {
         await this.loadPrologFile();
         this.extractExports();
-        const examples = this.generateJsonExamples();
+        const examples = this.generateJsonExamples(templateName);
         return examples;
     }
 }

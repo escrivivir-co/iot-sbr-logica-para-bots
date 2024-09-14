@@ -1,6 +1,14 @@
 import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { PrologService } from '../../services/prolog.service';
 
+/*
+  {
+            "predicate": "do_init",
+            "arity": 2,
+            "example": "do_init(Arg1, Arg2)",
+            "evalCompatible": "eval(\"do_init(Arg1, Arg2)\")"
+}
+*/
 @Component({
   selector: 'app-rule-editor',
   templateUrl: './rule-editor.component.html',
@@ -12,6 +20,8 @@ export class RuleEditorComponent implements OnInit {
   sdkTemplates: string[] = [];
   selectedTemplate: string = '';
   @Output() ruleSaved = new EventEmitter<void>();
+
+  rules: any[] = [];
 
   constructor(private prologService: PrologService) {}
 
@@ -34,7 +44,7 @@ export class RuleEditorComponent implements OnInit {
     if (this.selectedTemplate) {
       this.prologService.getTemplateContent(this.selectedTemplate).subscribe(
         (response) => {
-          this.ruleText = response.content;
+          this.rules = response.content as unknown as any[];
         },
         (error) => {
           console.error('Error loading template content:', error);
@@ -65,5 +75,40 @@ export class RuleEditorComponent implements OnInit {
         this.result = 'Error running rule: ' + error.message;
       }
     );
+  }
+
+  kitRun(rule: any, event: any) {
+
+  }
+
+  kitDelete(rule: any, event: any){}
+
+  onSubmit(rule: any, event: any) {
+
+    const formData = new FormData(event.target);
+    let args: string[] = [];
+
+    // Recopilar los argumentos de los inputs
+    for (let i = 0; i < rule.arity; i++) {
+      const argdata = formData.get(`arg${i + 1}`);
+      args.push(argdata + '');
+    }
+
+    // Mapear los argumentos al campo `example`
+    let exampleCall = rule.example;
+    args.forEach((arg, index) => {
+      exampleCall = exampleCall.replace(`Arg${index + 1}`, arg);
+    });
+
+    console.log("Llamada generada:", exampleCall);
+
+    // Aquí puedes ejecutar el código generado o enviarlo a otro servicio
+	rule.evalCompatible = exampleCall;
+	return exampleCall;
+  }
+
+  kitSave(rule: any, event: any) {
+	this.ruleText = rule.evalCompatible;
+	this.saveRule();
   }
 }

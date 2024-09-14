@@ -10,7 +10,9 @@ import { environment } from '../../environments/environment';
 export class RuleService {
   private apiUrl = `${environment.apiUrl}/rules`;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+	console.log(this.apiUrl)
+  }
 
   getRules(): Observable<Rule[]> {
     return this.http.get<Rule[]>(this.apiUrl);

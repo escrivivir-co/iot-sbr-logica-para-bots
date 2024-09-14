@@ -36,7 +36,7 @@ This project is a web application that allows users to manage and run Prolog rul
 
 ## Usage
 
-1. Open a web browser and go to `http://localhost:5000`
+1. Open a web browser and go to `http://localhost:5001`
 2. Use the Rule Editor to create and run Prolog rules
 3. View and manage existing rules in the Rule List
 

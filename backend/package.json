@@ -4,13 +4,14 @@
   "description": "Backend for Prolog Rule Management System",
   "main": "src/app.js",
   "scripts": {
-    "start": "node src/app.js",
+    "start": "node --watch src/app.js",
     "test": "jest --forceExit"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.1",
-    "sqlite3": "^5.0.2",
     "mqtt": "^4.2.8",
+    "sqlite3": "^5.0.2",
     "swipl": "^1.0.6",
     "winston": "^3.3.3"
   },

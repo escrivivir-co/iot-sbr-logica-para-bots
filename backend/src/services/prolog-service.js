@@ -1,36 +1,64 @@
 const swipl = require('swipl');
 const logger = require('../utils/logger');
 
-function executeRule(ruleText) {
-  return new Promise((resolve, reject) => {
+class PrologService {
+  constructor() {
+    this.initialized = false;
+  }
+
+  async init(templateName) {
     try {
-      // Asserting the rule
-      swipl.call(`assert((${ruleText}))`);
+      // Initialize the Prolog engine
 
-      // Querying the rule
-      const query = swipl.query('call((Goal))');
-      const results = [];
+	  const path = __dirname + "/codigo/sdk/modulos/web/" + templateName;
+	  const query = `consult('${path}')`;
 
-      // Collect all results
-      (function getNext() {
-        query.next((success) => {
-          if (success) {
-            results.push(query.getBindings());
-            getNext();
-          } else {
-            query.close();
-            swipl.call(`retract((${ruleText}))`);
-            resolve(results);
-          }
-        });
-      })();
+	  
+	  console.log("Prolog engine initialized process, try...",__dirname, query);
+	  swipl.call(query);
+	  this.initialized = true;
     } catch (error) {
-      logger.error('Error executing Prolog rule:', error);
-      reject(error);
+      console.error("Failed to initialize Prolog engine:", error.message);
+      throw error;
     }
-  });
+  }
+
+  async executeQuery(goal) {
+
+    if (!this.initialized) {
+      throw new Error("Prolog engine not initialized");
+    }
+
+    try {
+      // Use swipl.call to execute a query
+	  console.log("Searching query", goal);
+      const result = await swipl.call(goal);
+	  console.log("Object result raw[\n", result, "\n]");
+	  return result;
+    } catch (error) {
+      console.error("Error executing Prolog query:", error.message);
+
+	  if ((error.message + '').includes('Unknown procedure')) {
+		throw new Error("The procedure was not found!")
+	  }
+      throw error;
+    }
+  }
+
+  getTelemetryStatus() {
+	return [{
+		sensor: "light1",
+		value: "on"
+	}]
+  }
+
+  cleanup() {
+    if (this.initialized) {
+      swipl.cleanup();
+      this.initialized = false;
+      console.log("Prolog engine cleaned up");
+    }
+  }
 }
 
-module.exports = {
-  executeRule
-};
+module.exports = new PrologService();

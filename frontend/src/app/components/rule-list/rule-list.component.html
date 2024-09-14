@@ -5,9 +5,23 @@
   <div class="card-body">
     <ul class="list-group">
       <li *ngFor="let rule of rules" class="list-group-item d-flex justify-content-between align-items-center">
-        {{ rule.text }}
-        <button class="btn btn-danger btn-sm" (click)="deleteRule(rule.id)">Delete</button>
+		<table>
+			<tr>
+				<td>
+					<button class="btn btn-secondary  btn-sm" (click)="runRule(rule.id)">R</button>
+				</td>
+				<td>
+					<button class="btn btn-danger btn-sm" (click)="deleteRule(rule.id)">D</button>
+				</td>
+				<td colspan="2" style="padding-left: 10px;">
+					{{ rule.text }}
+				</td>
+			</tr>
+		</table>
       </li>
     </ul>
+	<div class="mt-3" *ngIf="result">
+		{{ result.status }}: {{ getResultText() }}
+	</div>
   </div>
 </div>

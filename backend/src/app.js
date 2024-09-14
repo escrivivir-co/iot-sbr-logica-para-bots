@@ -13,9 +13,10 @@ const app = express();
 const port = process.env.PORT || 8000;
 
 app.use(cors({
-  origin: [/\.repl\.co$/, /\.replit\.com$/],
-  credentials: true,
-  optionsSuccessStatus: 200
+  //origin: ["*"],
+  //origin: [/\.repl\.co$/, /\.replit\.com$/],
+  //credentials: true,
+  //optionsSuccessStatus: 200
 }));
 
 app.use(express.json());

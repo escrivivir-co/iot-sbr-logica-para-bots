@@ -5,7 +5,9 @@
   <div class="card-body">
     <div class="mb-3">
       <label for="templateSelect" class="form-label">Select SDK Template:</label>
-      <select id="templateSelect" class="form-select" [(ngModel)]="selectedTemplate" (change)="onTemplateSelect()">
+      <select id="templateSelect" class="form-select"
+	  	[(ngModel)]="selectedTemplate"
+		(change)="onTemplateSelect()">
         <option value="">-- Select a template --</option>
         <option *ngFor="let template of sdkTemplates" [value]="template">{{template}}</option>
       </select>
@@ -17,4 +19,42 @@
       <strong>Result:</strong> {{ result }}
     </div>
   </div>
+</div>
+<div class="card">
+	<div class="card-header">
+	  Rule List
+	</div>
+	<div class="card-body">
+	  <ul class="list-group">
+		<li *ngFor="let rule of rules" class="list-group-item d-flex justify-content-between align-items-center">
+
+		  <table>
+			  <tr>
+					<td>
+						<button class="btn btn-secondary btn-sm" (click)="kitRun(rule, $event)">R</button>
+					</td>
+					<td>
+						<button class="btn btn-success btn-sm" (click)="kitSave(rule, $event)">S</button>
+				  	</td>
+				  	<td>
+						<button class="btn btn-danger btn-sm" (click)="kitDelete(rule, $event)">D</button>
+				  	</td>
+				  	<td>
+						<label>{{ rule.example }}</label>
+						<label>{{ rule.evalCompatible }}</label>
+				  </td>
+				  <td colspan="2" style="padding-left: 10px;">
+					  <!-- Generate the form based on the arity of the rule -->
+					  <form (submit)="onSubmit(rule, $event)">
+						<div *ngFor="let i of [].constructor(rule.arity); let idx = index">
+						  <input type="text" class="form-control mb-2" name="arg{{idx+1}}" placeholder="Argument {{idx+1}}">
+						</div>
+						<button type="submit" class="btn btn-primary btn-sm">Submit</button>
+					  </form>
+				  </td>
+			  </tr>
+		  </table>
+		</li>
+	  </ul>
+	</div>
 </div>

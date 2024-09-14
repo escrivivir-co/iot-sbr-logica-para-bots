@@ -16,6 +16,7 @@ exports.saveRule = async (req, res) => {
 
 exports.getRules = async (req, res) => {
   try {
+	console.log("Prolog service", "Send query to server database...")
     const rules = await Rule.getAll();
     res.json(rules);
   } catch (error) {
@@ -39,11 +40,15 @@ exports.deleteRule = async (req, res) => {
 exports.runRule = async (req, res) => {
   try {
     const { text } = req.body;
-    const result = await prologService.executeRule(text);
-    res.json(result);
+    const result = await prologService.executeQuery(text);
+	console.log("Send results", result)
+    res.json({
+		status: 200,
+		payload: result
+	});
   } catch (error) {
-    logger.error('Error running rule:', error);
-    res.status(500).json({ error: 'Error running rule' });
+    console.log(error)
+    res.status(500).json({ error: error.message });
   }
 };
 
@@ -61,7 +66,11 @@ exports.getTemplateContent = async (req, res) => {
   try {
     const { templateName } = req.params;
     const content = await templateService.getTemplateContent(templateName);
+
     if (content) {
+
+	prologService.init(templateName);
+
       res.json({ content });
     } else {
       res.status(404).json({ error: 'Template not found' });

@@ -1,10 +1,9 @@
 const express = require('express');
+const telemetryController = require('../controllers/telemetry-controller');
+
 const router = express.Router();
 
-// Placeholder route for telemetry data
-router.post('/data', (req, res) => {
-  // TODO: Implement telemetry data handling
-  res.status(200).json({ message: 'Telemetry data received' });
-});
+router.post('/process', telemetryController.processTelemetry);
+router.get('/status', telemetryController.getTelemetryStatus);
 
 module.exports = router;

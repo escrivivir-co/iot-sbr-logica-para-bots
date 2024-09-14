@@ -1,5 +1,5 @@
-const prologService = require('../services/prologService');
-const prologParser = require('../utils/prologParser');
+const prologService = require('../services/prolog-service');
+const prologParser = require('../services/prolog-parser');
 
 exports.processTelemetry = async (req, res) => {
   const { telemetry } = req.body;

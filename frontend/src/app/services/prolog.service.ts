@@ -9,7 +9,9 @@ import { environment } from '../../environments/environment';
 export class PrologService {
   private apiUrl = environment.apiUrl;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+	console.log(this.apiUrl,  window.location.hostname)
+  }
 
   saveRule(ruleText: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/rules`, { text: ruleText });

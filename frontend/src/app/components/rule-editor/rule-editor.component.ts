@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { RuleService } from '../../services/rule.service';
-import { Rule } from '../../models/rule.model';
+import { Component, Output, EventEmitter, OnInit } from '@angular/core';
+import { PrologService } from '../../services/prolog.service';
 
 @Component({
   selector: 'app-rule-editor',
@@ -8,57 +7,63 @@ import { Rule } from '../../models/rule.model';
   styleUrls: ['./rule-editor.component.css']
 })
 export class RuleEditorComponent implements OnInit {
-  rules: Rule[] = [];
-  newRule: Rule = { name: '', content: '' };
+  ruleText: string = '';
+  result: string = '';
+  sdkTemplates: string[] = [];
+  selectedTemplate: string = '';
+  @Output() ruleSaved = new EventEmitter<void>();
 
-  constructor(private ruleService: RuleService) {}
+  constructor(private prologService: PrologService) {}
 
   ngOnInit() {
-    this.loadRules();
+    this.loadSdkTemplates();
   }
 
-  loadRules() {
-    this.ruleService.getRules().subscribe(
-      (rules) => this.rules = rules,
-      (error) => console.error('Error loading rules:', error)
-    );
-  }
-
-  createRule() {
-    this.ruleService.createRule(this.newRule).subscribe(
-      (rule) => {
-        this.rules.push(rule);
-        this.newRule = { name: '', content: '' };
+  loadSdkTemplates() {
+    this.prologService.getSdkTemplates().subscribe(
+      (templates) => {
+        this.sdkTemplates = templates;
       },
-      (error) => console.error('Error creating rule:', error)
+      (error) => {
+        console.error('Error loading SDK templates:', error);
+      }
     );
   }
 
-  updateRule(rule: Rule) {
-    this.ruleService.updateRule(rule).subscribe(
-      (updatedRule) => {
-        const index = this.rules.findIndex(r => r.id === updatedRule.id);
-        if (index !== -1) {
-          this.rules[index] = updatedRule;
+  onTemplateSelect() {
+    if (this.selectedTemplate) {
+      this.prologService.getTemplateContent(this.selectedTemplate).subscribe(
+        (response) => {
+          this.ruleText = response.content;
+        },
+        (error) => {
+          console.error('Error loading template content:', error);
         }
+      );
+    }
+  }
+
+  saveRule() {
+    this.prologService.saveRule(this.ruleText).subscribe(
+      (response) => {
+        this.result = 'Rule saved successfully';
+        this.ruleText = '';
+        this.ruleSaved.emit();
       },
-      (error) => console.error('Error updating rule:', error)
+      (error) => {
+        this.result = 'Error saving rule: ' + error.message;
+      }
     );
   }
 
-  deleteRule(rule: Rule) {
-    this.ruleService.deleteRule(rule.id).subscribe(
-      () => {
-        this.rules = this.rules.filter(r => r.id !== rule.id);
+  runRule() {
+    this.prologService.runRule(this.ruleText).subscribe(
+      (response) => {
+        this.result = 'Rule execution result: ' + JSON.stringify(response);
       },
-      (error) => console.error('Error deleting rule:', error)
-    );
-  }
-
-  applyRules() {
-    this.ruleService.applyRules().subscribe(
-      (result) => console.log('Rules applied:', result),
-      (error) => console.error('Error applying rules:', error)
+      (error) => {
+        this.result = 'Error running rule: ' + error.message;
+      }
     );
   }
 }

@@ -1,0 +1,13 @@
+<div class="card">
+  <div class="card-header">
+    Rule List
+  </div>
+  <div class="card-body">
+    <ul class="list-group">
+      <li *ngFor="let rule of rules" class="list-group-item d-flex justify-content-between align-items-center">
+        {{ rule.text }}
+        <button class="btn btn-danger btn-sm" (click)="deleteRule(rule.id)">Delete</button>
+      </li>
+    </ul>
+  </div>
+</div>

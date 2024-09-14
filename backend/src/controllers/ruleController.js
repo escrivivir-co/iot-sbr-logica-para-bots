@@ -6,7 +6,8 @@ exports.getRules = async (req, res) => {
     const result = await db.query('SELECT * FROM rules');
     res.json(result.rows);
   } catch (err) {
-    res.status(500).json({ error: 'Error fetching rules' });
+	console.log("RuleController. Servere error", err);
+    res.status(500).json({ error: 'Error fetching rules: ' + err.message });
   }
 };
 
@@ -20,7 +21,8 @@ exports.createRule = async (req, res) => {
     await prologService.updateRules();
     res.status(201).json(result.rows[0]);
   } catch (err) {
-    res.status(500).json({ error: 'Error creating rule' });
+	console.log("RuleController. Servere error", err);
+    res.status(500).json({ error: 'Error creating rule' + err.message });
   }
 };
 
@@ -35,7 +37,8 @@ exports.updateRule = async (req, res) => {
     await prologService.updateRules();
     res.json(result.rows[0]);
   } catch (err) {
-    res.status(500).json({ error: 'Error updating rule' });
+	console.log("RuleController. Servere error", err);
+    res.status(500).json({ error: 'Error updating rule' + err.message });
   }
 };
 
@@ -46,7 +49,8 @@ exports.deleteRule = async (req, res) => {
     await prologService.updateRules();
     res.status(204).send();
   } catch (err) {
-    res.status(500).json({ error: 'Error deleting rule' });
+	console.log("RuleController. Servere error", err);
+    res.status(500).json({ error: 'Error deleting rule' + err.message });
   }
 };
 
@@ -55,6 +59,7 @@ exports.applyRules = async (req, res) => {
     const result = await prologService.applyRules();
     res.json(result);
   } catch (err) {
-    res.status(500).json({ error: 'Error applying rules' });
+	console.log("RuleController. Servere error", err);
+    res.status(500).json({ error: 'Error applying rules' + err.message });
   }
 };

@@ -1,17 +1,20 @@
-<div class="rule-editor">
-  <h2>Rule Editor</h2>
-  <div class="new-rule">
-    <input [(ngModel)]="newRule.name" placeholder="Rule name">
-    <textarea [(ngModel)]="newRule.content" placeholder="Rule content"></textarea>
-    <button (click)="createRule()">Create Rule</button>
+<div class="card">
+  <div class="card-header">
+    Rule Editor
   </div>
-  <div class="rule-list">
-    <div *ngFor="let rule of rules" class="rule-item">
-      <h3>{{rule.name}}</h3>
-      <textarea [(ngModel)]="rule.content"></textarea>
-      <button (click)="updateRule(rule)">Update</button>
-      <button (click)="deleteRule(rule)">Delete</button>
+  <div class="card-body">
+    <div class="mb-3">
+      <label for="templateSelect" class="form-label">Select SDK Template:</label>
+      <select id="templateSelect" class="form-select" [(ngModel)]="selectedTemplate" (change)="onTemplateSelect()">
+        <option value="">-- Select a template --</option>
+        <option *ngFor="let template of sdkTemplates" [value]="template">{{template}}</option>
+      </select>
+    </div>
+    <textarea class="form-control mb-3" rows="5" [(ngModel)]="ruleText" placeholder="Enter Prolog rule here..."></textarea>
+    <button class="btn btn-primary me-2" (click)="saveRule()">Save Rule</button>
+    <button class="btn btn-secondary" (click)="runRule()">Run Rule</button>
+    <div class="mt-3" *ngIf="result">
+      <strong>Result:</strong> {{ result }}
     </div>
   </div>
-  <button (click)="applyRules()">Apply Rules</button>
 </div>

@@ -1,0 +1,21 @@
+{
+  "name": "prolog-rule-management-backend",
+  "version": "1.0.0",
+  "description": "Backend for Prolog Rule Management System",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "test": "jest --forceExit"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "sqlite3": "^5.0.2",
+    "mqtt": "^4.2.8",
+    "swipl": "^1.0.6",
+    "winston": "^3.3.3"
+  },
+  "devDependencies": {
+    "jest": "^27.0.6",
+    "supertest": "^6.1.3"
+  }
+}

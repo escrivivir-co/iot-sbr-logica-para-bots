@@ -1,3 +1,12 @@
-<div class="app-container">
-  <app-dashboard></app-dashboard>
+<div class="container mt-4">
+  <h1>{{ title }}</h1>
+  <div class="row">
+    <div class="col-md-6">
+      <app-rule-list></app-rule-list>
+    </div>
+    <div class="col-md-6">
+      <app-rule-editor (ruleSaved)="onRuleSaved()"></app-rule-editor>
+      <app-dashboard></app-dashboard>
+    </div>	
+  </div>
 </div>

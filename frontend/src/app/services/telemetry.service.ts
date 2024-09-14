@@ -7,7 +7,7 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class TelemetryService {
-  private apiUrl = `${environment.apiUrl}/telemetry`;
+	private apiUrl = 'https://' + window.location.hostname + ':8000' + '/iot';
 
   constructor(private http: HttpClient) {}
 

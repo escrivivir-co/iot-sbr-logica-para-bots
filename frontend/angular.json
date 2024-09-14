@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "iot-telemetry-processing": {
+    "prolog-rule-management": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,10 +13,12 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/iot-telemetry-processing",
+            "outputPath": "dist/prolog-rule-management",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "polyfills": "/home/runner/IoT-Logic-engine/frontend/src/polyfills.ts",
+            "polyfills": [
+              "zone.js"
+            ],
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
@@ -41,12 +43,6 @@
                   "maximumError": "4kb"
                 }
               ],
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
-              ],
               "outputHashing": "all"
             },
             "development": {
@@ -62,12 +58,19 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "prolog-rule-management:build",
+            "port": 5001,
+            "host": "0.0.0.0",
+            "disableHostCheck": true,
+            "allowedHosts": ["localhost", ".repl.co", "*"]
+          },
           "configurations": {
             "production": {
-              "browserTarget": "iot-telemetry-processing:build:production"
+              "browserTarget": "prolog-rule-management:build:production"
             },
             "development": {
-              "browserTarget": "iot-telemetry-processing:build:development"
+              "browserTarget": "prolog-rule-management:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -75,16 +78,17 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "iot-telemetry-processing:build"
+            "browserTarget": "prolog-rule-management:build"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
             "tsConfig": "tsconfig.spec.json",
-            "karmaConfig": "karma.conf.js",
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -99,6 +103,6 @@
     }
   },
   "cli": {
-    "analytics": "84451500-3387-4301-86c6-db0da7187d81"
+    "analytics": false
   }
 }

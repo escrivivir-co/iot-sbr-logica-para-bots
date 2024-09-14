@@ -1,48 +1,75 @@
 const express = require('express');
 const cors = require('cors');
-const ruleRoutes = require('./routes/ruleRoutes');
-const telemetryRoutes = require('./routes/telemetryRoutes');
-const prologService = require('./services/prologService');
-const mqttService = require('./services/mqttService');
+const sqlite3 = require('sqlite3').verbose();
+const mqtt = require('mqtt');
+const swipl = require('swipl');
+const logger = require('./utils/logger');
+const config = require('../config');
+const apiRoutes = require('./routes/api');
+const telemetryRoutes = require('./routes/telemetry');
+const mqttService = require('./services/mqtt-service');
 
 const app = express();
+const port = process.env.PORT || 8000;
 
 app.use(cors({
-  origin: '*',
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  origin: [/\.repl\.co$/, /\.replit\.com$/],
+  credentials: true,
+  optionsSuccessStatus: 200
 }));
 
 app.use(express.json());
 
-app.use('/api/rules', ruleRoutes);
-app.use('/api/telemetry', telemetryRoutes);
-// Enable trust proxy to work with Replit's proxy
-app.set('trust proxy', 1);
-
-// Middleware to handle Invalid Host header issue
-app.use((req, res, next) => {
-  const allowedHosts = ['0.0.0.0', 'localhost', '.repl.co'];
-  const host = req.headers.host || '';
-  if (allowedHosts.some(allowedHost => host.includes(allowedHost))) {
-    next();
+const db = new sqlite3.Database('./database.sqlite', (err) => {
+  if (err) {
+    logger.error('Error connecting to SQLite database:', err);
   } else {
-    res.status(403).send('Forbidden');
+    logger.info('Connected to SQLite database');
+    // Create the rules table if it doesn't exist
+    db.run(`CREATE TABLE IF NOT EXISTS rules (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      text TEXT NOT NULL
+    )`);
+
+    // Add the simple test query
+    db.all('SELECT * FROM rules LIMIT 1', (err, rows) => {
+      if (err) {
+        logger.error('Error querying database:', err);
+      } else {
+        logger.info('Database query successful. Number of rules:', rows.length);
+      }
+    });
   }
 });
 
-const PORT = process.env.PORT || 8000;
+// MQTT connection
+const mqttClient = mqtt.connect(config.mqttBroker, {
+  username: config.mqttUsername,
+  password: config.mqttPassword
+});
 
-async function startServer() {
-  try {
-    await prologService.init();
-    mqttService.connect();
-    app.listen(PORT, '0.0.0.0', () => {
-      console.log(`Server running on port ${PORT}`);
-    });
-  } catch (err) {
-    console.error('Failed to start server:', err);
-  }
-}
+mqttClient.on('connect', () => {
+  logger.info('Connected to MQTT broker');
+  mqttService.init(mqttClient);
+});
 
-startServer();
+mqttClient.on('error', (error) => {
+  logger.error('MQTT connection error:', error);
+});
+
+// Routes
+app.use('/api', apiRoutes);
+app.use('/api/telemetry', telemetryRoutes);
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+  logger.error(err.stack);
+  res.status(500).send('Something went wrong!');
+});
+
+// Start the server
+app.listen(port, '0.0.0.0', () => {
+  logger.info(`Server is now running and listening on http://0.0.0.0:${port}`);
+});
+
+module.exports = app;

@@ -4,23 +4,26 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { RuleEditorComponent } from './components/rule-editor/rule-editor.component';
+import { RuleListComponent } from './components/rule-list/rule-list.component';
+import { PrologService } from './services/prolog.service';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { TelemetryMonitorComponent } from './components/telemetry-monitor/telemetry-monitor.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent,
     RuleEditorComponent,
-    TelemetryMonitorComponent
+    RuleListComponent,
+    TelemetryMonitorComponent,
+	  DashboardComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [PrologService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

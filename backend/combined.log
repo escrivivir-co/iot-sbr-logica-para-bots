@@ -349,3 +349,249 @@
 {"level":"info","message":"Subscribed to sensor/temperature","timestamp":"2024-09-14T19:38:35.917Z"}
 {"level":"info","message":"Subscribed to sensor/humidity","timestamp":"2024-09-14T19:38:35.919Z"}
 {"level":"info","message":"Received message on sensor/humidity: 47","timestamp":"2024-09-14T19:38:35.920Z"}
+{"level":"info","message":"Server is now running and listening on http://0.0.0.0:8000","timestamp":"2024-09-14T20:55:23.391Z"}
+{"level":"info","message":"Connected to SQLite database","timestamp":"2024-09-14T20:55:23.398Z"}
+{"level":"info","message":"Database query successful. Number of rules:","timestamp":"2024-09-14T20:55:23.425Z"}
+{"level":"info","message":"Connected to MQTT broker","timestamp":"2024-09-14T20:55:23.481Z"}
+{"level":"info","message":"Subscribed to sensor/temperature","timestamp":"2024-09-14T20:55:23.523Z"}
+{"level":"info","message":"Subscribed to sensor/humidity","timestamp":"2024-09-14T20:55:23.526Z"}
+{"level":"info","message":"Received message on sensor/humidity: 47","timestamp":"2024-09-14T20:55:23.527Z"}
+{"level":"info","message":"Server is now running and listening on http://0.0.0.0:8000","timestamp":"2024-09-15T09:29:58.715Z"}
+{"level":"info","message":"Connected to SQLite database","timestamp":"2024-09-15T09:29:58.844Z"}
+{"level":"info","message":"Database query successful. Number of rules:","timestamp":"2024-09-15T09:29:58.931Z"}
+{"level":"info","message":"Connected to MQTT broker","timestamp":"2024-09-15T09:29:59.229Z"}
+{"level":"info","message":"Subscribed to sensor/temperature","timestamp":"2024-09-15T09:29:59.273Z"}
+{"level":"info","message":"Subscribed to sensor/humidity","timestamp":"2024-09-15T09:29:59.274Z"}
+{"level":"info","message":"Received message on sensor/humidity: 47","timestamp":"2024-09-15T09:29:59.276Z"}
+{"level":"info","message":"Server is now running and listening on http://0.0.0.0:8000","timestamp":"2024-09-15T09:30:22.261Z"}
+{"level":"info","message":"Connected to SQLite database","timestamp":"2024-09-15T09:30:22.269Z"}
+{"level":"info","message":"Database query successful. Number of rules:","timestamp":"2024-09-15T09:30:22.323Z"}
+{"level":"info","message":"Connected to MQTT broker","timestamp":"2024-09-15T09:30:22.392Z"}
+{"level":"info","message":"Subscribed to sensor/temperature","timestamp":"2024-09-15T09:30:22.431Z"}
+{"level":"info","message":"Subscribed to sensor/humidity","timestamp":"2024-09-15T09:30:22.432Z"}
+{"level":"info","message":"Received message on sensor/humidity: 47","timestamp":"2024-09-15T09:30:22.440Z"}
+{"level":"info","message":"Received message on sensor/temperature: 20","timestamp":"2024-09-15T09:30:30.785Z"}
+{"level":"info","message":"Server is now running and listening on http://0.0.0.0:8000","timestamp":"2024-09-15T09:35:34.328Z"}
+{"level":"info","message":"Connected to SQLite database","timestamp":"2024-09-15T09:35:34.333Z"}
+{"level":"info","message":"Database query successful. Number of rules:","timestamp":"2024-09-15T09:35:34.361Z"}
+{"level":"info","message":"Connected to MQTT broker","timestamp":"2024-09-15T09:35:34.415Z"}
+{"level":"info","message":"Subscribed to sensor/temperature","timestamp":"2024-09-15T09:35:34.452Z"}
+{"level":"info","message":"Subscribed to sensor/humidity","timestamp":"2024-09-15T09:35:34.452Z"}
+{"level":"info","message":"Received message on sensor/humidity: 47","timestamp":"2024-09-15T09:35:34.453Z"}
+{"level":"info","message":"Server is now running and listening on http://0.0.0.0:8000","timestamp":"2024-09-15T09:38:08.149Z"}
+{"level":"info","message":"Connected to SQLite database","timestamp":"2024-09-15T09:38:08.154Z"}
+{"level":"info","message":"Database query successful. Number of rules:","timestamp":"2024-09-15T09:38:08.170Z"}
+{"level":"info","message":"Connected to MQTT broker","timestamp":"2024-09-15T09:38:08.265Z"}
+{"level":"info","message":"Subscribed to sensor/temperature","timestamp":"2024-09-15T09:38:08.307Z"}
+{"level":"info","message":"Subscribed to sensor/humidity","timestamp":"2024-09-15T09:38:08.308Z"}
+{"level":"info","message":"Received message on sensor/humidity: 47","timestamp":"2024-09-15T09:38:08.308Z"}
+{"level":"info","message":"Server is now running and listening on http://0.0.0.0:8000","timestamp":"2024-09-15T10:05:05.671Z"}
+{"level":"info","message":"Connected to SQLite database","timestamp":"2024-09-15T10:05:05.678Z"}
+{"level":"info","message":"Database query successful. Number of rules:","timestamp":"2024-09-15T10:05:05.729Z"}
+{"level":"info","message":"Connected to MQTT broker","timestamp":"2024-09-15T10:05:06.731Z"}
+{"level":"info","message":"Subscribed to sensor/temperature","timestamp":"2024-09-15T10:05:07.141Z"}
+{"level":"info","message":"Subscribed to sensor/humidity","timestamp":"2024-09-15T10:05:07.245Z"}
+{"level":"info","message":"Received message on sensor/humidity: 47","timestamp":"2024-09-15T10:05:07.249Z"}
+{"level":"info","message":"Server is now running and listening on http://0.0.0.0:8000","timestamp":"2024-09-15T10:08:28.701Z"}
+{"level":"info","message":"Connected to SQLite database","timestamp":"2024-09-15T10:08:28.706Z"}
+{"level":"info","message":"Database query successful. Number of rules:","timestamp":"2024-09-15T10:08:28.725Z"}
+{"level":"info","message":"Connected to MQTT broker","timestamp":"2024-09-15T10:08:28.803Z"}
+{"level":"info","message":"Subscribed to sensor/temperature","timestamp":"2024-09-15T10:08:28.841Z"}
+{"level":"info","message":"Subscribed to sensor/humidity","timestamp":"2024-09-15T10:08:28.843Z"}
+{"level":"info","message":"Received message on sensor/humidity: 47","timestamp":"2024-09-15T10:08:28.844Z"}
+{"level":"info","message":"Server is now running and listening on http://0.0.0.0:8000","timestamp":"2024-09-15T10:09:39.355Z"}
+{"level":"info","message":"Connected to SQLite database","timestamp":"2024-09-15T10:09:39.361Z"}
+{"level":"info","message":"Database query successful. Number of rules:","timestamp":"2024-09-15T10:09:39.383Z"}
+{"level":"info","message":"Connected to MQTT broker","timestamp":"2024-09-15T10:09:39.440Z"}
+{"level":"info","message":"Subscribed to sensor/temperature","timestamp":"2024-09-15T10:09:39.477Z"}
+{"level":"info","message":"Subscribed to sensor/humidity","timestamp":"2024-09-15T10:09:39.478Z"}
+{"level":"info","message":"Received message on sensor/humidity: 47","timestamp":"2024-09-15T10:09:39.479Z"}
+{"level":"info","message":"Server is now running and listening on http://0.0.0.0:8000","timestamp":"2024-09-15T10:10:13.278Z"}
+{"level":"info","message":"Connected to SQLite database","timestamp":"2024-09-15T10:10:13.284Z"}
+{"level":"info","message":"Database query successful. Number of rules:","timestamp":"2024-09-15T10:10:13.297Z"}
+{"level":"info","message":"Connected to MQTT broker","timestamp":"2024-09-15T10:10:13.367Z"}
+{"level":"info","message":"Subscribed to sensor/temperature","timestamp":"2024-09-15T10:10:13.410Z"}
+{"level":"info","message":"Subscribed to sensor/humidity","timestamp":"2024-09-15T10:10:13.416Z"}
+{"level":"info","message":"Received message on sensor/humidity: 47","timestamp":"2024-09-15T10:10:13.417Z"}
+{"level":"info","message":"Server is now running and listening on http://0.0.0.0:8000","timestamp":"2024-09-15T10:10:39.811Z"}
+{"level":"info","message":"Connected to SQLite database","timestamp":"2024-09-15T10:10:39.817Z"}
+{"level":"info","message":"Database query successful. Number of rules:","timestamp":"2024-09-15T10:10:39.841Z"}
+{"level":"info","message":"Connected to MQTT broker","timestamp":"2024-09-15T10:10:39.931Z"}
+{"level":"info","message":"Subscribed to sensor/temperature","timestamp":"2024-09-15T10:10:39.989Z"}
+{"level":"info","message":"Subscribed to sensor/humidity","timestamp":"2024-09-15T10:10:39.997Z"}
+{"level":"info","message":"Received message on sensor/humidity: 47","timestamp":"2024-09-15T10:10:39.998Z"}
+{"level":"info","message":"Server is now running and listening on http://0.0.0.0:8000","timestamp":"2024-09-15T10:13:19.902Z"}
+{"level":"info","message":"Connected to SQLite database","timestamp":"2024-09-15T10:13:19.963Z"}
+{"level":"info","message":"Database query successful. Number of rules:","timestamp":"2024-09-15T10:13:20.012Z"}
+{"level":"info","message":"Connected to MQTT broker","timestamp":"2024-09-15T10:13:20.080Z"}
+{"level":"info","message":"Subscribed to sensor/temperature","timestamp":"2024-09-15T10:13:20.140Z"}
+{"level":"info","message":"Subscribed to sensor/humidity","timestamp":"2024-09-15T10:13:20.140Z"}
+{"level":"info","message":"Received message on sensor/humidity: 47","timestamp":"2024-09-15T10:13:20.141Z"}
+{"level":"info","message":"Server is now running and listening on http://0.0.0.0:8000","timestamp":"2024-09-15T10:15:23.858Z"}
+{"level":"info","message":"Connected to SQLite database","timestamp":"2024-09-15T10:15:23.866Z"}
+{"level":"info","message":"Database query successful. Number of rules:","timestamp":"2024-09-15T10:15:23.875Z"}
+{"level":"info","message":"Connected to MQTT broker","timestamp":"2024-09-15T10:15:23.943Z"}
+{"level":"info","message":"Subscribed to sensor/temperature","timestamp":"2024-09-15T10:15:24.071Z"}
+{"level":"info","message":"Subscribed to sensor/humidity","timestamp":"2024-09-15T10:15:24.072Z"}
+{"level":"info","message":"Received message on sensor/humidity: 47","timestamp":"2024-09-15T10:15:24.072Z"}
+{"level":"info","message":"Server is now running and listening on http://0.0.0.0:8000","timestamp":"2024-09-15T10:20:21.634Z"}
+{"level":"info","message":"Connected to SQLite database","timestamp":"2024-09-15T10:20:21.639Z"}
+{"level":"info","message":"Database query successful. Number of rules:","timestamp":"2024-09-15T10:20:21.661Z"}
+{"level":"info","message":"Connected to MQTT broker","timestamp":"2024-09-15T10:20:22.196Z"}
+{"level":"info","message":"Subscribed to sensor/temperature","timestamp":"2024-09-15T10:20:22.238Z"}
+{"level":"info","message":"Subscribed to sensor/humidity","timestamp":"2024-09-15T10:20:22.240Z"}
+{"level":"info","message":"Received message on sensor/humidity: 47","timestamp":"2024-09-15T10:20:22.241Z"}
+{"level":"info","message":"Server is now running and listening on http://0.0.0.0:8000","timestamp":"2024-09-15T10:22:30.166Z"}
+{"level":"info","message":"Connected to SQLite database","timestamp":"2024-09-15T10:22:30.173Z"}
+{"level":"info","message":"Database query successful. Number of rules:","timestamp":"2024-09-15T10:22:30.200Z"}
+{"level":"info","message":"Connected to MQTT broker","timestamp":"2024-09-15T10:22:30.265Z"}
+{"level":"info","message":"Subscribed to sensor/temperature","timestamp":"2024-09-15T10:22:30.375Z"}
+{"level":"info","message":"Subscribed to sensor/humidity","timestamp":"2024-09-15T10:22:30.377Z"}
+{"level":"info","message":"Received message on sensor/humidity: 47","timestamp":"2024-09-15T10:22:30.380Z"}
+{"level":"info","message":"Server is now running and listening on http://0.0.0.0:8000","timestamp":"2024-09-15T10:25:40.354Z"}
+{"level":"info","message":"Connected to SQLite database","timestamp":"2024-09-15T10:25:40.359Z"}
+{"level":"info","message":"Database query successful. Number of rules:","timestamp":"2024-09-15T10:25:40.431Z"}
+{"level":"info","message":"Connected to MQTT broker","timestamp":"2024-09-15T10:25:40.471Z"}
+{"level":"info","message":"Subscribed to sensor/temperature","timestamp":"2024-09-15T10:25:40.508Z"}
+{"level":"info","message":"Subscribed to sensor/humidity","timestamp":"2024-09-15T10:25:40.508Z"}
+{"level":"info","message":"Received message on sensor/humidity: 47","timestamp":"2024-09-15T10:25:40.509Z"}
+{"level":"info","message":"Server is now running and listening on http://0.0.0.0:8000","timestamp":"2024-09-15T10:25:55.984Z"}
+{"level":"info","message":"Connected to SQLite database","timestamp":"2024-09-15T10:25:56.063Z"}
+{"level":"info","message":"Database query successful. Number of rules:","timestamp":"2024-09-15T10:25:56.105Z"}
+{"level":"info","message":"Connected to MQTT broker","timestamp":"2024-09-15T10:25:56.153Z"}
+{"level":"info","message":"Subscribed to sensor/temperature","timestamp":"2024-09-15T10:25:56.194Z"}
+{"level":"info","message":"Subscribed to sensor/humidity","timestamp":"2024-09-15T10:25:56.197Z"}
+{"level":"info","message":"Received message on sensor/humidity: 47","timestamp":"2024-09-15T10:25:56.198Z"}
+{"level":"info","message":"Server is now running and listening on http://0.0.0.0:8000","timestamp":"2024-09-15T10:27:00.722Z"}
+{"level":"info","message":"Connected to SQLite database","timestamp":"2024-09-15T10:27:00.728Z"}
+{"level":"info","message":"Database query successful. Number of rules:","timestamp":"2024-09-15T10:27:00.754Z"}
+{"level":"info","message":"Connected to MQTT broker","timestamp":"2024-09-15T10:27:00.834Z"}
+{"level":"info","message":"Subscribed to sensor/temperature","timestamp":"2024-09-15T10:27:00.872Z"}
+{"level":"info","message":"Subscribed to sensor/humidity","timestamp":"2024-09-15T10:27:00.876Z"}
+{"level":"info","message":"Received message on sensor/humidity: 47","timestamp":"2024-09-15T10:27:00.877Z"}
+{"level":"info","message":"Server is now running and listening on http://0.0.0.0:8000","timestamp":"2024-09-15T10:29:28.371Z"}
+{"level":"info","message":"Connected to SQLite database","timestamp":"2024-09-15T10:29:28.377Z"}
+{"level":"info","message":"Database query successful. Number of rules:","timestamp":"2024-09-15T10:29:28.405Z"}
+{"level":"info","message":"Connected to MQTT broker","timestamp":"2024-09-15T10:29:28.459Z"}
+{"level":"info","message":"Subscribed to sensor/temperature","timestamp":"2024-09-15T10:29:28.496Z"}
+{"level":"info","message":"Subscribed to sensor/humidity","timestamp":"2024-09-15T10:29:28.500Z"}
+{"level":"info","message":"Received message on sensor/humidity: 47","timestamp":"2024-09-15T10:29:28.501Z"}
+{"level":"info","message":"Server is now running and listening on http://0.0.0.0:8000","timestamp":"2024-09-15T10:33:00.002Z"}
+{"level":"info","message":"Connected to SQLite database","timestamp":"2024-09-15T10:33:00.013Z"}
+{"level":"info","message":"Database query successful. Number of rules:","timestamp":"2024-09-15T10:33:00.049Z"}
+{"level":"info","message":"Connected to MQTT broker","timestamp":"2024-09-15T10:33:00.410Z"}
+{"level":"info","message":"Subscribed to sensor/temperature","timestamp":"2024-09-15T10:33:00.448Z"}
+{"level":"info","message":"Subscribed to sensor/humidity","timestamp":"2024-09-15T10:33:00.449Z"}
+{"level":"info","message":"Received message on sensor/humidity: 47","timestamp":"2024-09-15T10:33:00.449Z"}
+{"level":"info","message":"Server is now running and listening on http://0.0.0.0:8000","timestamp":"2024-09-15T10:38:40.033Z"}
+{"level":"info","message":"Connected to SQLite database","timestamp":"2024-09-15T10:38:40.089Z"}
+{"level":"info","message":"Database query successful. Number of rules:","timestamp":"2024-09-15T10:38:40.284Z"}
+{"level":"info","message":"Connected to MQTT broker","timestamp":"2024-09-15T10:38:40.360Z"}
+{"level":"info","message":"Subscribed to sensor/temperature","timestamp":"2024-09-15T10:38:40.401Z"}
+{"level":"info","message":"Subscribed to sensor/humidity","timestamp":"2024-09-15T10:38:40.406Z"}
+{"level":"info","message":"Received message on sensor/humidity: 47","timestamp":"2024-09-15T10:38:40.409Z"}
+{"level":"info","message":"Server is now running and listening on http://0.0.0.0:8000","timestamp":"2024-09-15T10:39:38.537Z"}
+{"level":"info","message":"Connected to SQLite database","timestamp":"2024-09-15T10:39:38.548Z"}
+{"level":"info","message":"Database query successful. Number of rules:","timestamp":"2024-09-15T10:39:38.620Z"}
+{"level":"info","message":"Connected to MQTT broker","timestamp":"2024-09-15T10:39:38.889Z"}
+{"level":"info","message":"Subscribed to sensor/temperature","timestamp":"2024-09-15T10:39:39.147Z"}
+{"level":"info","message":"Subscribed to sensor/humidity","timestamp":"2024-09-15T10:39:39.151Z"}
+{"level":"info","message":"Received message on sensor/humidity: 47","timestamp":"2024-09-15T10:39:39.164Z"}
+{"level":"info","message":"Server is now running and listening on http://0.0.0.0:8000","timestamp":"2024-09-15T10:43:53.411Z"}
+{"level":"info","message":"Connected to SQLite database","timestamp":"2024-09-15T10:43:53.425Z"}
+{"level":"info","message":"Database query successful. Number of rules:","timestamp":"2024-09-15T10:43:53.452Z"}
+{"level":"info","message":"Connected to MQTT broker","timestamp":"2024-09-15T10:43:53.561Z"}
+{"level":"info","message":"Subscribed to sensor/temperature","timestamp":"2024-09-15T10:43:53.623Z"}
+{"level":"info","message":"Subscribed to sensor/humidity","timestamp":"2024-09-15T10:43:53.625Z"}
+{"level":"info","message":"Received message on sensor/humidity: 47","timestamp":"2024-09-15T10:43:53.626Z"}
+{"level":"info","message":"Server is now running and listening on http://0.0.0.0:8000","timestamp":"2024-09-15T10:44:41.148Z"}
+{"level":"info","message":"Connected to SQLite database","timestamp":"2024-09-15T10:44:41.154Z"}
+{"level":"info","message":"Database query successful. Number of rules:","timestamp":"2024-09-15T10:44:41.226Z"}
+{"level":"info","message":"Connected to MQTT broker","timestamp":"2024-09-15T10:44:41.280Z"}
+{"level":"info","message":"Subscribed to sensor/temperature","timestamp":"2024-09-15T10:44:41.317Z"}
+{"level":"info","message":"Subscribed to sensor/humidity","timestamp":"2024-09-15T10:44:41.320Z"}
+{"level":"info","message":"Received message on sensor/humidity: 47","timestamp":"2024-09-15T10:44:41.334Z"}
+{"level":"info","message":"Server is now running and listening on http://0.0.0.0:8000","timestamp":"2024-09-15T10:46:42.619Z"}
+{"level":"info","message":"Connected to SQLite database","timestamp":"2024-09-15T10:46:42.697Z"}
+{"level":"info","message":"Database query successful. Number of rules:","timestamp":"2024-09-15T10:46:42.790Z"}
+{"level":"info","message":"Connected to MQTT broker","timestamp":"2024-09-15T10:46:43.018Z"}
+{"level":"info","message":"Subscribed to sensor/temperature","timestamp":"2024-09-15T10:46:43.103Z"}
+{"level":"info","message":"Subscribed to sensor/humidity","timestamp":"2024-09-15T10:46:43.107Z"}
+{"level":"info","message":"Received message on sensor/humidity: 47","timestamp":"2024-09-15T10:46:43.161Z"}
+{"level":"info","message":"Server is now running and listening on http://0.0.0.0:8000","timestamp":"2024-09-15T10:48:02.372Z"}
+{"level":"info","message":"Connected to SQLite database","timestamp":"2024-09-15T10:48:02.381Z"}
+{"level":"info","message":"Database query successful. Number of rules:","timestamp":"2024-09-15T10:48:02.420Z"}
+{"level":"info","message":"Connected to MQTT broker","timestamp":"2024-09-15T10:48:02.480Z"}
+{"level":"info","message":"Subscribed to sensor/temperature","timestamp":"2024-09-15T10:48:02.516Z"}
+{"level":"info","message":"Subscribed to sensor/humidity","timestamp":"2024-09-15T10:48:02.519Z"}
+{"level":"info","message":"Received message on sensor/humidity: 47","timestamp":"2024-09-15T10:48:02.520Z"}
+{"level":"info","message":"Server is now running and listening on http://0.0.0.0:8000","timestamp":"2024-09-15T10:49:03.275Z"}
+{"level":"info","message":"Connected to SQLite database","timestamp":"2024-09-15T10:49:03.299Z"}
+{"level":"info","message":"Database query successful. Number of rules:","timestamp":"2024-09-15T10:49:03.332Z"}
+{"level":"info","message":"Connected to MQTT broker","timestamp":"2024-09-15T10:49:03.387Z"}
+{"level":"info","message":"Subscribed to sensor/temperature","timestamp":"2024-09-15T10:49:03.426Z"}
+{"level":"info","message":"Subscribed to sensor/humidity","timestamp":"2024-09-15T10:49:03.430Z"}
+{"level":"info","message":"Received message on sensor/humidity: 47","timestamp":"2024-09-15T10:49:03.432Z"}
+{"level":"info","message":"Server is now running and listening on http://0.0.0.0:8000","timestamp":"2024-09-15T10:56:10.110Z"}
+{"level":"info","message":"Connected to SQLite database","timestamp":"2024-09-15T10:56:10.118Z"}
+{"level":"info","message":"Database query successful. Number of rules:","timestamp":"2024-09-15T10:56:10.166Z"}
+{"level":"info","message":"Connected to MQTT broker","timestamp":"2024-09-15T10:56:10.580Z"}
+{"level":"info","message":"Subscribed to sensor/temperature","timestamp":"2024-09-15T10:56:10.634Z"}
+{"level":"info","message":"Subscribed to sensor/humidity","timestamp":"2024-09-15T10:56:10.641Z"}
+{"level":"info","message":"Received message on sensor/humidity: 47","timestamp":"2024-09-15T10:56:10.643Z"}
+{"level":"info","message":"Server is now running and listening on http://0.0.0.0:8000","timestamp":"2024-09-15T11:06:39.205Z"}
+{"level":"info","message":"Connected to SQLite database","timestamp":"2024-09-15T11:06:39.211Z"}
+{"level":"info","message":"Database query successful. Number of rules:","timestamp":"2024-09-15T11:06:39.231Z"}
+{"level":"info","message":"Connected to MQTT broker","timestamp":"2024-09-15T11:06:39.619Z"}
+{"level":"info","message":"Subscribed to sensor/temperature","timestamp":"2024-09-15T11:06:39.659Z"}
+{"level":"info","message":"Subscribed to sensor/humidity","timestamp":"2024-09-15T11:06:39.667Z"}
+{"level":"info","message":"Received message on sensor/humidity: 47","timestamp":"2024-09-15T11:06:39.668Z"}
+{"level":"info","message":"Server is now running and listening on http://0.0.0.0:8000","timestamp":"2024-09-15T11:08:34.654Z"}
+{"level":"info","message":"Connected to SQLite database","timestamp":"2024-09-15T11:08:34.659Z"}
+{"level":"info","message":"Database query successful. Number of rules:","timestamp":"2024-09-15T11:08:34.684Z"}
+{"level":"info","message":"Connected to MQTT broker","timestamp":"2024-09-15T11:08:34.735Z"}
+{"level":"info","message":"Subscribed to sensor/temperature","timestamp":"2024-09-15T11:08:34.771Z"}
+{"level":"info","message":"Subscribed to sensor/humidity","timestamp":"2024-09-15T11:08:34.774Z"}
+{"level":"info","message":"Received message on sensor/humidity: 47","timestamp":"2024-09-15T11:08:34.775Z"}
+{"level":"info","message":"Server is now running and listening on http://0.0.0.0:8000","timestamp":"2024-09-15T11:09:49.266Z"}
+{"level":"info","message":"Connected to SQLite database","timestamp":"2024-09-15T11:09:49.458Z"}
+{"level":"info","message":"Database query successful. Number of rules:","timestamp":"2024-09-15T11:09:49.609Z"}
+{"level":"info","message":"Connected to MQTT broker","timestamp":"2024-09-15T11:09:49.667Z"}
+{"level":"info","message":"Subscribed to sensor/temperature","timestamp":"2024-09-15T11:09:49.707Z"}
+{"level":"info","message":"Subscribed to sensor/humidity","timestamp":"2024-09-15T11:09:49.707Z"}
+{"level":"info","message":"Received message on sensor/humidity: 47","timestamp":"2024-09-15T11:09:49.708Z"}
+{"level":"info","message":"Server is now running and listening on http://0.0.0.0:8000","timestamp":"2024-09-15T11:10:50.462Z"}
+{"level":"info","message":"Connected to SQLite database","timestamp":"2024-09-15T11:10:50.467Z"}
+{"level":"info","message":"Database query successful. Number of rules:","timestamp":"2024-09-15T11:10:50.496Z"}
+{"level":"info","message":"Connected to MQTT broker","timestamp":"2024-09-15T11:10:50.548Z"}
+{"level":"info","message":"Subscribed to sensor/temperature","timestamp":"2024-09-15T11:10:50.585Z"}
+{"level":"info","message":"Subscribed to sensor/humidity","timestamp":"2024-09-15T11:10:50.585Z"}
+{"level":"info","message":"Received message on sensor/humidity: 47","timestamp":"2024-09-15T11:10:50.586Z"}
+{"level":"info","message":"Server is now running and listening on http://0.0.0.0:8000","timestamp":"2024-09-15T11:13:57.753Z"}
+{"level":"info","message":"Connected to SQLite database","timestamp":"2024-09-15T11:13:57.758Z"}
+{"level":"info","message":"Database query successful. Number of rules:","timestamp":"2024-09-15T11:13:57.790Z"}
+{"level":"info","message":"Connected to MQTT broker","timestamp":"2024-09-15T11:13:58.318Z"}
+{"level":"info","message":"Subscribed to sensor/temperature","timestamp":"2024-09-15T11:13:58.359Z"}
+{"level":"info","message":"Subscribed to sensor/humidity","timestamp":"2024-09-15T11:13:58.363Z"}
+{"level":"info","message":"Received message on sensor/humidity: 47","timestamp":"2024-09-15T11:13:58.364Z"}
+{"level":"info","message":"Server is now running and listening on http://0.0.0.0:8000","timestamp":"2024-09-15T11:14:01.948Z"}
+{"level":"info","message":"Connected to SQLite database","timestamp":"2024-09-15T11:14:01.953Z"}
+{"level":"info","message":"Database query successful. Number of rules:","timestamp":"2024-09-15T11:14:01.980Z"}
+{"level":"info","message":"Connected to MQTT broker","timestamp":"2024-09-15T11:14:02.028Z"}
+{"level":"info","message":"Subscribed to sensor/temperature","timestamp":"2024-09-15T11:14:02.068Z"}
+{"level":"info","message":"Subscribed to sensor/humidity","timestamp":"2024-09-15T11:14:02.070Z"}
+{"level":"info","message":"Received message on sensor/humidity: 47","timestamp":"2024-09-15T11:14:02.071Z"}
+{"level":"info","message":"Server is now running and listening on http://0.0.0.0:8000","timestamp":"2024-09-15T11:15:25.664Z"}
+{"level":"info","message":"Connected to SQLite database","timestamp":"2024-09-15T11:15:25.669Z"}
+{"level":"info","message":"Database query successful. Number of rules:","timestamp":"2024-09-15T11:15:25.721Z"}
+{"level":"info","message":"Connected to MQTT broker","timestamp":"2024-09-15T11:15:25.782Z"}
+{"level":"info","message":"Subscribed to sensor/temperature","timestamp":"2024-09-15T11:15:25.824Z"}
+{"level":"info","message":"Subscribed to sensor/humidity","timestamp":"2024-09-15T11:15:25.824Z"}
+{"level":"info","message":"Received message on sensor/humidity: 47","timestamp":"2024-09-15T11:15:25.825Z"}
+{"level":"info","message":"Server is now running and listening on http://0.0.0.0:8000","timestamp":"2024-09-15T11:15:34.147Z"}
+{"level":"info","message":"Connected to SQLite database","timestamp":"2024-09-15T11:15:34.153Z"}
+{"level":"info","message":"Database query successful. Number of rules:","timestamp":"2024-09-15T11:15:34.161Z"}
+{"level":"info","message":"Connected to MQTT broker","timestamp":"2024-09-15T11:15:34.230Z"}
+{"level":"info","message":"Subscribed to sensor/temperature","timestamp":"2024-09-15T11:15:34.268Z"}
+{"level":"info","message":"Subscribed to sensor/humidity","timestamp":"2024-09-15T11:15:34.269Z"}
+{"level":"info","message":"Received message on sensor/humidity: 47","timestamp":"2024-09-15T11:15:34.270Z"}

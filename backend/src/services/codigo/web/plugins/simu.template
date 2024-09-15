@@ -1,0 +1,6 @@
+{
+	"name": "Simulador",
+	"description": "Control basic Simulator with Prolog engine",
+	"main": "simu",
+	"files": ["."]
+}

@@ -3,6 +3,7 @@ const logger = require('../utils/logger');
 const templateService = require('./template-service')
 const path = require('path');
 const fs = require('fs');
+const { type } = require('os');
 
 class PrologService {
 
@@ -67,7 +68,16 @@ class PrologService {
 			console.log("Searching query", goal);
 			const result = await swipl.call(goal);
 			console.log("Object result raw[\n", result, "\n]");
-			return this.parseResult(result.Result);
+
+			if (typeof result == "object") {
+				if (Object.keys(result) == 0) {
+					return this.parseResult("Success");
+				}
+				return this.parseResult(result[Object.keys(result)[0]]);
+			} else {
+				return this.parseResult(result);
+			}
+
 		} catch (error) {
 			console.error("Error executing Prolog query:", error.message);
 
@@ -78,20 +88,52 @@ class PrologService {
 		}
 	}
 
+	convertPairKeyToJSON(prologList) {
+		const result = {};
+		for (const pair of prologList) {
+			result[pair[0]] = pair[1];  // 'pair' is an array with two elements: key and value
+		}
+		return result;
+	}
+
 	parseResult(data) {
 
 		try {
-			const myData = JSON.parse(data);
-			// console.log("The data >>", myData, "ZZ")
+			console.log("The data", typeof data, data)
+			if (data === false || (!data)) {
+				return [ { Result: "FALSE" }]
+			}
+
+			// console.log("An object found missing", typeof data)
+			let myData = data;
+			console.log("The data >>", myData, "ZZ")
+			if (typeof myData == "string"){
+				try {
+					myData = JSON.parse(data);
+					console.log("The object is a json string!!!!")
+					return myData;
+				} catch(ex) {
+					console.log("The object is not  a json string")
+				}
+			}
+
 			if (Array.isArray(myData)) {
-				// console.log("The data is array", myData.length)
+
+				myData = JSON.parse(data);
+				console.log("The data is array", myData.length)
 				return myData.map(d => d)
-			} if(typeof myData == "string") {
-				// console.log("The data is NOT array", typeof myData)
+			} else if(typeof myData == "string") {
+				console.log("The data is NOT array", typeof myData)
 				return [ { result: myData }];
 			}
-			return myData;
-			const o = JSON.parse(data)
+
+			if (typeof myData == "number") {
+				return [ { result: myData + ""}];
+			}
+			console.log("The data is any", typeof myData)
+
+			return [myData];
+
 		} catch(Ex) {
 			console.log("Parse ", Ex.message)
 			return [ { result: data }];

@@ -9,7 +9,7 @@
 	  	[(ngModel)]="selectedTemplate"
 		(change)="onTemplateSelect()">
         <option value="">-- Select a template --</option>
-        <option *ngFor="let template of sdkTemplates" value="{{ template.main }}">{{template.name}}</option>
+        <option *ngFor="let template of sdkTemplates" value="{{ template.main }}">{{template.name}}. {{template.description}}</option>
       </select>
     </div>
     <textarea class="form-control mb-3" rows="5" [(ngModel)]="ruleText" placeholder="Enter Prolog rule here..."></textarea>

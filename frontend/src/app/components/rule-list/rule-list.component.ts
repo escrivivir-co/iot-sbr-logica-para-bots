@@ -59,8 +59,10 @@ export class RuleListComponent implements OnInit {
 	objectKeys() {
 		if (this.data.length > 0) {
 
-			const pattern = this.data[0];
-
+			let pattern = this.data[0];
+			if (!pattern) {
+				pattern = { result: this.data[0] }
+			}
 			return Object.keys(pattern);
 
 		} else {
@@ -70,6 +72,10 @@ export class RuleListComponent implements OnInit {
 	}
 
 	isObject(item: any) {
+		if (!item) {
+			item = ""
+			return false
+		}
 		return typeof item != "string"
 	}
 

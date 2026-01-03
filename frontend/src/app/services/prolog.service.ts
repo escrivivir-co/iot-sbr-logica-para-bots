@@ -16,6 +16,19 @@ import type {
   SessionResponse, 
   ListSessionsResponse 
 } from '../models/session.model';
+import type {
+  Template,
+  TemplateContentResponse,
+  TemplatesCatalog,
+} from '../models/template.model';
+import type {
+  AssertFactResponse,
+  ConsultFileResponse,
+} from '../models/prolog.model';
+import type {
+  TelemetryResult,
+  TelemetryStatus,
+} from '../models/telemetry.model';
 
 /**
  * Service for Prolog operations.
@@ -67,17 +80,21 @@ export class PrologService {
   // Template Operations
   // ============================================
 
-  getSdkTemplates(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/sdk-templates`);
+  getSdkTemplates(): Observable<Template[]> {
+    return this.http.get<Template[]>(`${this.apiUrl}/sdk-templates`);
   }
 
-  getTemplateContent(templateName: string): Observable<{content: string}> {
+  getSdkTemplateContent(templateId: string): Observable<TemplateContentResponse> {
+    return this.http.get<TemplateContentResponse>(`${this.apiUrl}/sdk-templates/${templateId}`);
+  }
+
+  getTemplateContent(templateName: string): Observable<TemplateContentResponse> {
     this.templateName = templateName;
     return this.http.get<{content: string}>(`${this.apiUrl}/template/${templateName}`);
   }
 
-  getMcpTemplates(): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/mcp-templates`);
+  getMcpTemplates(): Observable<TemplatesCatalog> {
+    return this.http.get<TemplatesCatalog>(`${this.apiUrl}/mcp-templates`);
   }
 
   saveUserApp(appName: string, content: string): Observable<{message: string}> {
@@ -107,15 +124,15 @@ export class PrologService {
   // Prolog Operations (MCP)
   // ============================================
 
-  assertFact(fact: string, sessionId?: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/assert`, {
+  assertFact(fact: string, sessionId?: string): Observable<AssertFactResponse> {
+    return this.http.post<AssertFactResponse>(`${this.apiUrl}/assert`, {
       sessionId: sessionId || this.currentSessionId,
       fact
     });
   }
 
-  consultFile(filePath: string, sessionId?: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/consult`, {
+  consultFile(filePath: string, sessionId?: string): Observable<ConsultFileResponse> {
+    return this.http.post<ConsultFileResponse>(`${this.apiUrl}/consult`, {
       sessionId: sessionId || this.currentSessionId,
       filePath
     });
@@ -137,11 +154,11 @@ export class PrologService {
   // Telemetry Operations (IoT)
   // ============================================
 
-  processTelemetry(telemetry: { sensor: string; value: number | string }): Observable<any> {
-    return this.http.post(`${this.apiUrl}/telemetry/process`, { telemetry });
+  processTelemetry(telemetry: { sensor: string; value: number | string }): Observable<TelemetryResult> {
+    return this.http.post<TelemetryResult>(`${this.apiUrl}/telemetry/process`, { telemetry });
   }
 
-  getTelemetryStatus(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/telemetry/status`);
+  getTelemetryStatus(): Observable<TelemetryStatus[]> {
+    return this.http.get<TelemetryStatus[]>(`${this.apiUrl}/telemetry/status`);
   }
 }

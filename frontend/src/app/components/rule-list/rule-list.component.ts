@@ -22,12 +22,9 @@ export class RuleListComponent implements OnInit {
 	}
 
 	ngOnChanges(changes: SimpleChanges) {
-		// Check if inputValue has changed
 		if (changes['theApp'] && !changes['theApp'].isFirstChange()) {
-			console.log("Refresh for AAddddd", this.theApp)	
-			this.loadRules(this.theApp.app); // Trigger load function when inputValue changes
+			this.loadRules(this.theApp.app);
 		}
-
 	}
 
 	escapeHtml(str: string) {
@@ -80,12 +77,10 @@ export class RuleListComponent implements OnInit {
 	}
 
 	loadRules(app: string) {
-
 		if (!app) {
 			this.rules = [];
 			return;
 		}
-		console.log("Refresh for AA", this.theApp)
 		this.prologService.getRules(app).subscribe(
 		(rules) => {
 			this.rules = rules;
@@ -97,10 +92,8 @@ export class RuleListComponent implements OnInit {
 	}
 
 	deleteRule(id: number) {
-		console.log("Refresh for 1", this.theApp)
 		this.prologService.deleteRule(id).subscribe(
 		() => {
-			console.log("Refresh for", this.theApp)
 			this.loadRules(this.theApp.app);
 		},
 		(error) => {
@@ -110,17 +103,14 @@ export class RuleListComponent implements OnInit {
   	}
 
 	runRule(id: number) {
-
-		const r = this.rules.find(r => r.id == id)
+		const r = this.rules.find(r => r.id == id);
 		if (!r) {
-			console.log("No rule with id", id)
 			return;
 		}
 		this.prologService.runRule(r.evalCompatible).subscribe(
 			(result) => {
 				this.result = result;
 				this.data = this.result?.payload;
-				console.log("After DATA IS FILLED", this.data)
 			},
 			(error) => {
 				console.error('Error running rule:', error.message);

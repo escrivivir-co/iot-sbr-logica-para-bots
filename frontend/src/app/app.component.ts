@@ -13,14 +13,10 @@ export class AppComponent {
 	@ViewChild(RuleListComponent) ruleListComponent!: RuleListComponent;
 
 	onRuleSaved(rule: any) {
-		// Trigger a refresh of the rule list
-		console.log("On saved", rule)
 		this.refreshRuleList(rule?.app);
 	}
 
 	appSelected(app: string) {
-		// Trigger a refresh of the rule list
-		console.log("On appSelected", app)
 		this.refreshRuleList(app);
 	}
 

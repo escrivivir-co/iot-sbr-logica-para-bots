@@ -1,5 +1,6 @@
 import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { PrologService } from '../../services/prolog.service';
+import { RuleInput } from '../../models/rule.model';
 
 /*
   {
@@ -24,7 +25,7 @@ export class RuleEditorComponent implements OnInit {
 	@Output() appSelected = new EventEmitter<string>();
 
   	rules: any[] = [];
-	rule = {};
+	rule: RuleInput = { name: '', content: '' };
   constructor(private prologService: PrologService) {}
 
   ngOnInit() {
@@ -34,7 +35,6 @@ export class RuleEditorComponent implements OnInit {
   loadSdkTemplates() {
     this.prologService.getSdkTemplates().subscribe(
       (templates) => {
-		console.log("loading templtes", templates[0]?.name)
         this.sdkTemplates = templates;
       },
       (error) => {
@@ -44,9 +44,7 @@ export class RuleEditorComponent implements OnInit {
   }
 
   onTemplateSelect() {
-
     if (this.selectedTemplate) {
-		console.log("", this.selectedTemplate)
 		this.prologService.getTemplateContent(this.selectedTemplate).subscribe(
 		(response) => {
 			this.rules = response.content as unknown as any[];
@@ -60,8 +58,6 @@ export class RuleEditorComponent implements OnInit {
   }
 
 	saveRule() {
-
-		console.log("save rule", this.rule)
 		this.prologService.saveRule(this.rule).subscribe(
 			(response) => {
 			this.result = 'Rule saved successfully';
@@ -109,10 +105,7 @@ export class RuleEditorComponent implements OnInit {
       exampleCall = exampleCall.replace(`Arg${index + 1}`, arg);
     });
 
-    console.log("Llamada generada:", exampleCall);
-
-    // Aquí puedes ejecutar el código generado o enviarlo a otro servicio
-	rule.evalCompatible = exampleCall;
+    rule.evalCompatible = exampleCall;
 	return exampleCall;
   }
 

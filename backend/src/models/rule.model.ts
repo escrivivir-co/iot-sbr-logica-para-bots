@@ -26,7 +26,7 @@ function getDb(): sqlite3.Database {
 }
 
 /**
- * Initialize the rules table
+ * Initialize the rules table with auto-migration
  */
 export function initRulesTable(): Promise<void> {
   
@@ -50,8 +50,40 @@ export function initRulesTable(): Promise<void> {
         reject(err);
       } else {
         log.info('Rules table initialized');
-        resolve();
+        // Auto-migrate: add 'name' column if missing (for existing DBs)
+        migrateAddNameColumn().then(resolve).catch(reject);
       }
+    });
+  });
+}
+
+/**
+ * Migration: Add 'name' column if missing (backwards compatibility)
+ */
+function migrateAddNameColumn(): Promise<void> {
+  return new Promise((resolve, reject) => {
+    // Check if column exists
+    getDb().all("PRAGMA table_info(rules)", (err, rows: Array<{ name: string }>) => {
+      if (err) {
+        log.error('Migration check failed', { error: err.message });
+        return reject(err);
+      }
+      
+      const hasNameColumn = rows.some(row => row.name === 'name');
+      if (hasNameColumn) {
+        log.info('Migration: name column already exists');
+        return resolve();
+      }
+      
+      // Add the column
+      getDb().run("ALTER TABLE rules ADD COLUMN name TEXT", (alterErr) => {
+        if (alterErr) {
+          log.error('Migration failed: could not add name column', { error: alterErr.message });
+          return reject(alterErr);
+        }
+        log.info('Migration: added name column to rules table');
+        resolve();
+      });
     });
   });
 }

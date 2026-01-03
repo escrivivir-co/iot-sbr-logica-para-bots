@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "start": "concurrently \"npm run start:backend\" \"npm run start:frontend\"",
-    "start:backend": "node backend/src/app.js",
+    "start:backend": "cd backend && npm run start:dev",
     "start:frontend": "cd frontend && ng serve --port 5001 --host 0.0.0.0",
     "install": "concurrently \"npm run install:backend\" \"npm run install:frontend\"",
     "install:backend": "cd backend && npm install",

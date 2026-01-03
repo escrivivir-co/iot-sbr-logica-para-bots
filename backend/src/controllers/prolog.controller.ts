@@ -9,8 +9,18 @@ import { Request, Response } from 'express';
 import { mcpPrologClient } from '../services/mcp-prolog-client';
 import { templateService } from '../services/template-service';
 import { createRule, getRules, deleteRule } from '../models/rule.model';
-import { logger } from '../utils/logger';
+import { logger as importedLogger } from '../utils/logger';
 import type { QueryRequest, RuleInput } from '../types';
+
+// Fallback logger to avoid undefined issues during module loading
+const logger = importedLogger || {
+  info: (msg: string, meta?: object) => console.log(`[INFO] ${msg}`, meta || ''),
+  error: (msg: string, meta?: object) => console.error(`[ERROR] ${msg}`, meta || ''),
+  warn: (msg: string, meta?: object) => console.warn(`[WARN] ${msg}`, meta || ''),
+  debug: (msg: string, meta?: object) => console.log(`[DEBUG] ${msg}`, meta || ''),
+};
+
+console.log('[DEBUG] prolog.controller.ts: logger is', logger ? 'defined' : 'undefined');
 
 // Session tracking for backwards compatibility
 let currentSessionId: string | null = null;

@@ -12,17 +12,26 @@
 
 import * as fs from 'fs/promises';
 import * as path from 'path';
-import { logger } from '../utils/logger';
+import { logger as importedLogger } from '../utils/logger';
 import type { Template, TemplateContentResponse } from '../types';
 
+// Fallback logger to avoid undefined issues during module loading
+const logger = importedLogger || {
+  info: (msg: string, meta?: object) => console.log(`[INFO] ${msg}`, meta || ''),
+  error: (msg: string, meta?: object) => console.error(`[ERROR] ${msg}`, meta || ''),
+  warn: (msg: string, meta?: object) => console.warn(`[WARN] ${msg}`, meta || ''),
+  debug: (msg: string, meta?: object) => console.log(`[DEBUG] ${msg}`, meta || ''),
+};
+
 // Path to MCP Presets packs (primary source)
-const MCP_PACKS_PATH = path.resolve(__dirname, '../../../../../.github/plugins/mcp-presets/packs');
+// From: PrologEditor/backend/src/services/ → .github/plugins/mcp-presets/packs (4 levels up)
+const MCP_PACKS_PATH = path.resolve(__dirname, '../../../../.github/plugins/mcp-presets/packs');
 
 // Path to ARCHIVO-based templates
-const ARCHIVO_TEMPLATES_PATH = path.resolve(__dirname, '../../../../../ARCHIVO/PLUGINS/PROLOG_EDITOR/templates');
+const ARCHIVO_TEMPLATES_PATH = path.resolve(__dirname, '../../../../ARCHIVO/PLUGINS/PROLOG_EDITOR/templates');
 
 // Path to Teatro ELENCO brains (Lucas, etc.)
-const ELENCO_BRAINS_PATH = path.resolve(__dirname, '../../../../../ARCHIVO/DISCO/TALLER/ELENCO');
+const ELENCO_BRAINS_PATH = path.resolve(__dirname, '../../../../ARCHIVO/DISCO/TALLER/ELENCO');
 
 // Default templates path (primary source = MCP Presets packs)
 const TEMPLATES_PATH = MCP_PACKS_PATH;
@@ -32,6 +41,8 @@ export class TemplateService {
 
   constructor(templatesPath?: string) {
     this.templatesPath = templatesPath || TEMPLATES_PATH;
+    // Use console.log to avoid potential circular dependency issues with logger during initialization
+    console.log(`[INFO] TemplateService initialized with path: ${this.templatesPath}`);
   }
 
   /**
@@ -39,18 +50,22 @@ export class TemplateService {
    */
   async getSdkTemplates(): Promise<Template[]> {
     try {
+      logger.info(`Attempting to read templates from: ${this.templatesPath}`);
       // Try primary path first
       let files: string[] = [];
       try {
         files = await fs.readdir(this.templatesPath);
-      } catch {
+        logger.info(`Found ${files.length} files in templates directory: ${files.join(', ')}`);
+      } catch (readErr: any) {
+        logger.warn(`Failed to read primary path: ${readErr.message}`);
         // Try ARCHIVO path as fallback
         try {
           await fs.access(ARCHIVO_TEMPLATES_PATH);
           files = await fs.readdir(ARCHIVO_TEMPLATES_PATH);
           this.templatesPath = ARCHIVO_TEMPLATES_PATH;
+          logger.info(`Using fallback path, found ${files.length} files`);
         } catch {
-          logger.warn('No templates directory found');
+          logger.warn('No templates directory found, using defaults');
           return this.getDefaultTemplates();
         }
       }

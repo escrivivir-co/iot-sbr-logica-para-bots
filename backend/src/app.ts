@@ -78,7 +78,10 @@ app.get('/health', (req: Request, res: Response) => {
 // ============================================
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
-  logger.error('Unhandled error', { error: err.message, stack: err.stack });
+  logger.error(`Unhandled error: ${err.message}`);
+  if (err.stack) {
+    logger.error(`Stack: ${err.stack}`);
+  }
   res.status(500).json({ error: 'Something went wrong!' });
 });
 

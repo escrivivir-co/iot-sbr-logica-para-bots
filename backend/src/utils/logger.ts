@@ -6,6 +6,8 @@
 
 import winston from 'winston';
 
+console.log('[DEBUG] logger.ts: module evaluating');
+
 const { combine, timestamp, printf, colorize } = winston.format;
 
 const logFormat = printf(({ level, message, timestamp: ts, ...meta }) => {
@@ -46,5 +48,6 @@ const createLogger = () => {
 };
 
 export const logger = createLogger();
+console.log('[DEBUG] Logger initialized:', !!logger);
 
 export default logger;

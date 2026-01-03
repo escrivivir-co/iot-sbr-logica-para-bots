@@ -1,0 +1,107 @@
+<div class="brain-editor">
+  <div class="header">
+    <h2>🧠 Brain Editor: {{ identity.name || 'nuevo_personaje' }}.brain.pl</h2>
+    <div class="actions">
+      <button (click)="copyToClipboard()" [disabled]="!generatedCode" title="Copiar">📋</button>
+      <button (click)="exportBrain()" [disabled]="!generatedCode" title="Exportar">💾</button>
+    </div>
+  </div>
+
+  <div class="editor-layout">
+    <!-- Left Panel: Forms -->
+    <div class="form-panel">
+      <!-- Identity Section -->
+      <section class="identity-section">
+        <h3>📋 IDENTIDAD</h3>
+        <div class="form-group">
+          <label>Nombre:</label>
+          <input type="text" [(ngModel)]="identity.name" placeholder="ej: lucas" />
+        </div>
+        <div class="form-group">
+          <label>Rol:</label>
+          <input type="text" [(ngModel)]="identity.rol" placeholder="ej: scrum_master" />
+        </div>
+        <div class="form-group">
+          <label>Especialidad:</label>
+          <input type="text" [(ngModel)]="identity.especialidad" placeholder="ej: gestion_indices" />
+        </div>
+      </section>
+
+      <!-- Knowledge Section -->
+      <section class="knowledge-section">
+        <h3>📚 CONOCIMIENTO</h3>
+        <div class="fact-list">
+          <div *ngFor="let fact of facts; let i = index" class="fact-item">
+            <span>conoce({{ identity.name || 'agente' }}, {{ fact }})</span>
+            <button (click)="removeFact(i)" class="remove-btn">✕</button>
+          </div>
+        </div>
+        <div class="add-fact">
+          <input type="text" [(ngModel)]="newFact" placeholder="concepto que conoce" (keyup.enter)="addFact()" />
+          <button (click)="addFact()" [disabled]="!newFact.trim()">+ Añadir</button>
+        </div>
+      </section>
+
+      <!-- Rules Section -->
+      <section class="rules-section">
+        <h3>📜 REGLAS DE COMPORTAMIENTO</h3>
+        <p class="hint">Si contexto = X, entonces acción = Y</p>
+        
+        <div class="rules-list">
+          <div *ngFor="let rule of rules; let i = index" class="rule-item">
+            <div class="rule-row">
+              <label>Si:</label>
+              <select [(ngModel)]="rule.context" *ngIf="!rule.customContext">
+                <option value="">-- Seleccionar contexto --</option>
+                <option *ngFor="let ctx of CONTEXTS" [value]="ctx">{{ ctx }}</option>
+              </select>
+              <input *ngIf="rule.customContext" type="text" [(ngModel)]="rule.context" placeholder="contexto_custom" />
+              <button (click)="rule.customContext = !rule.customContext" class="toggle-btn">
+                {{ rule.customContext ? '📋' : '✏️' }}
+              </button>
+            </div>
+            <div class="rule-row">
+              <label>Entonces:</label>
+              <select [(ngModel)]="rule.action" *ngIf="!rule.customAction">
+                <option value="">-- Seleccionar acción --</option>
+                <option *ngFor="let act of ACTIONS" [value]="act">{{ act }}</option>
+              </select>
+              <input *ngIf="rule.customAction" type="text" [(ngModel)]="rule.action" placeholder="accion_custom" />
+              <button (click)="rule.customAction = !rule.customAction" class="toggle-btn">
+                {{ rule.customAction ? '📋' : '✏️' }}
+              </button>
+            </div>
+            <button (click)="removeRule(i)" class="remove-btn" [disabled]="rules.length <= 1">✕</button>
+          </div>
+        </div>
+        
+        <button (click)="addRule()" class="add-rule-btn">+ Añadir regla</button>
+      </section>
+    </div>
+
+    <!-- Right Panel: Generated Code -->
+    <div class="code-panel">
+      <div class="code-header">
+        <h3>% Código Generado</h3>
+        <button (click)="generateCode()" [disabled]="isGenerating" class="generate-btn">
+          {{ isGenerating ? 'Generando...' : '🔄 Regenerar' }}
+        </button>
+      </div>
+      
+      <pre class="prolog-code"><code>{{ generatedCode || '% Completa el formulario y pulsa Regenerar' }}</code></pre>
+      
+      <div class="test-section">
+        <button (click)="testCode()" [disabled]="isTesting || !generatedCode || !sessionId" class="test-btn">
+          {{ isTesting ? 'Probando...' : '▶ Probar en sesión' }}
+        </button>
+        
+        <div *ngIf="testResult" class="test-result success">{{ testResult }}</div>
+        <div *ngIf="testError" class="test-result error">{{ testError }}</div>
+        
+        <div *ngIf="!sessionId" class="warning">
+          ⚠️ Crea una sesión Prolog para probar el código
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,350 @@
+.brain-editor {
+  padding: 16px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.header h2 {
+  margin: 0;
+  font-size: 1.4rem;
+  color: #333;
+}
+
+.header .actions button {
+  margin-left: 8px;
+  padding: 8px 12px;
+  font-size: 1.1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: #f5f5f5;
+  cursor: pointer;
+}
+
+.header .actions button:hover:not(:disabled) {
+  background: #e8e8e8;
+}
+
+.header .actions button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.editor-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  min-height: 600px;
+}
+
+/* Form Panel */
+.form-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-panel section {
+  background: #fafafa;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.form-panel h3 {
+  margin: 0 0 12px 0;
+  font-size: 1rem;
+  color: #555;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 8px;
+}
+
+.form-group {
+  margin-bottom: 12px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 4px;
+  font-weight: 500;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.95rem;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+}
+
+/* Knowledge Section */
+.fact-list {
+  margin-bottom: 12px;
+}
+
+.fact-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 10px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 6px;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.85rem;
+}
+
+.add-fact {
+  display: flex;
+  gap: 8px;
+}
+
+.add-fact input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.add-fact button {
+  padding: 8px 16px;
+  background: #6366f1;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.add-fact button:hover:not(:disabled) {
+  background: #5558e3;
+}
+
+.add-fact button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+/* Rules Section */
+.hint {
+  font-size: 0.85rem;
+  color: #888;
+  margin-bottom: 12px;
+}
+
+.rules-list {
+  margin-bottom: 12px;
+}
+
+.rule-item {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 12px;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.rule-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.rule-row label {
+  width: 70px;
+  font-weight: 500;
+  color: #666;
+}
+
+.rule-row select,
+.rule-row input[type="text"] {
+  flex: 1;
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.toggle-btn {
+  padding: 4px 8px;
+  font-size: 0.9rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: #f5f5f5;
+  cursor: pointer;
+}
+
+.remove-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 2px 8px;
+  font-size: 0.9rem;
+  border: none;
+  background: #fee2e2;
+  color: #dc2626;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.remove-btn:hover:not(:disabled) {
+  background: #fecaca;
+}
+
+.remove-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.add-rule-btn {
+  width: 100%;
+  padding: 10px;
+  background: #f0f9ff;
+  border: 1px dashed #6366f1;
+  color: #6366f1;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.add-rule-btn:hover {
+  background: #e0f2fe;
+}
+
+/* Code Panel */
+.code-panel {
+  display: flex;
+  flex-direction: column;
+  background: #1e1e1e;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.code-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: #2d2d2d;
+  border-bottom: 1px solid #404040;
+}
+
+.code-header h3 {
+  margin: 0;
+  color: #9cdcfe;
+  font-size: 0.95rem;
+  font-family: 'Fira Code', monospace;
+}
+
+.generate-btn {
+  padding: 6px 12px;
+  background: #4ec9b0;
+  color: #1e1e1e;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.generate-btn:hover:not(:disabled) {
+  background: #5cd9c0;
+}
+
+.generate-btn:disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+.prolog-code {
+  flex: 1;
+  margin: 0;
+  padding: 16px;
+  overflow: auto;
+  font-family: 'Fira Code', 'Consolas', monospace;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: #d4d4d4;
+  background: #1e1e1e;
+}
+
+.prolog-code code {
+  color: inherit;
+}
+
+.test-section {
+  padding: 12px 16px;
+  background: #2d2d2d;
+  border-top: 1px solid #404040;
+}
+
+.test-btn {
+  width: 100%;
+  padding: 10px;
+  background: #6366f1;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.test-btn:hover:not(:disabled) {
+  background: #5558e3;
+}
+
+.test-btn:disabled {
+  background: #555;
+  cursor: not-allowed;
+}
+
+.test-result {
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.test-result.success {
+  background: #052e16;
+  color: #4ade80;
+}
+
+.test-result.error {
+  background: #450a0a;
+  color: #f87171;
+}
+
+.warning {
+  padding: 8px;
+  font-size: 0.85rem;
+  color: #fbbf24;
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .editor-layout {
+    grid-template-columns: 1fr;
+  }
+  
+  .code-panel {
+    min-height: 400px;
+  }
+}

@@ -17,6 +17,9 @@ import { McpTemplatesBrowserComponent } from './components/mcp-templates-browser
 import { UserAppSaveDialogComponent } from './components/user-app-save-dialog/user-app-save-dialog.component';
 import { TelemetryProcessComponent } from './components/telemetry-process/telemetry-process.component';
 
+// Teatro integration (TEATRO-PROLOG-1.0.0)
+import { BrainEditorComponent } from './components/brain-editor/brain-editor.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +32,9 @@ import { TelemetryProcessComponent } from './components/telemetry-process/teleme
     KnowledgeBaseComponent,
     McpTemplatesBrowserComponent,
     UserAppSaveDialogComponent,
-    TelemetryProcessComponent
+    TelemetryProcessComponent,
+    // Teatro integration
+    BrainEditorComponent
   ],
   imports: [
     BrowserModule,

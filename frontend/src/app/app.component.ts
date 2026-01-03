@@ -7,6 +7,7 @@ import { PrologService } from './services/prolog.service';
  * 
  * Provides tabbed navigation for all MCP-aligned features.
  * @epic PROLOG-UI-2.0.0
+ * @epic TEATRO-PROLOG-1.0.0
  */
 @Component({
   selector: 'app-root',
@@ -18,7 +19,7 @@ export class AppComponent {
   theApp: any = { app: '' };
   
   // Navigation
-  activeTab: 'sessions' | 'editor' | 'knowledge' | 'templates' | 'telemetry' = 'sessions';
+  activeTab: 'sessions' | 'editor' | 'knowledge' | 'templates' | 'telemetry' | 'brain' = 'sessions';
   
   // Session state
   currentSessionId: string | null = null;
@@ -73,5 +74,11 @@ export class AppComponent {
     this.showSaveDialog = false;
     // Refresh rule list
     this.refreshRuleList(event.name);
+  }
+
+  // Brain editor (TEATRO-PROLOG-1.0.0)
+  onBrainExported(filename: string) {
+    console.log('Brain exported:', filename);
+    // Could show notification here
   }
 }

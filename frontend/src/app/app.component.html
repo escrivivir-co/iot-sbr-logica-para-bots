@@ -42,6 +42,13 @@
         <i class="bi bi-broadcast"></i> Telemetry
       </a>
     </li>
+    <li class="nav-item">
+      <a class="nav-link" 
+         [class.active]="activeTab === 'brain'"
+         (click)="activeTab = 'brain'" href="javascript:void(0)">
+        <i class="bi bi-lightbulb"></i> 🧠 Brain Editor
+      </a>
+    </li>
   </ul>
   
   <!-- Tab Content -->
@@ -92,6 +99,16 @@
       </div>
       <div class="col-md-6">
         <app-dashboard></app-dashboard>
+      </div>
+    </div>
+    
+    <!-- Brain Editor Tab (TEATRO-PROLOG-1.0.0) -->
+    <div *ngIf="activeTab === 'brain'" class="row">
+      <div class="col-12">
+        <app-brain-editor 
+          [sessionId]="currentSessionId"
+          (brainExported)="onBrainExported($event)">
+        </app-brain-editor>
       </div>
     </div>
   </div>

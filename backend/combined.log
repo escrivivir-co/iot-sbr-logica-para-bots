@@ -595,3 +595,6 @@
 {"level":"info","message":"Subscribed to sensor/temperature","timestamp":"2024-09-15T11:15:34.268Z"}
 {"level":"info","message":"Subscribed to sensor/humidity","timestamp":"2024-09-15T11:15:34.269Z"}
 {"level":"info","message":"Received message on sensor/humidity: 47","timestamp":"2024-09-15T11:15:34.270Z"}
+2026-01-03 02:05:04 [warn]: No templates directory found
+2026-01-03 02:05:10 [warn]: No templates directory found
+2026-01-03 02:05:14 [warn]: No templates directory found

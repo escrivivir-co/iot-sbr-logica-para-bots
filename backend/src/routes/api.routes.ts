@@ -8,6 +8,7 @@
 
 import { Router } from 'express';
 import * as prologController from '../controllers/prolog.controller';
+import * as telemetryController from '../controllers/telemetry.controller';
 
 const router = Router();
 
@@ -44,5 +45,12 @@ router.post('/consult', prologController.consultFile);
 
 // MCP Templates (from AAIAGallery)
 router.get('/mcp-templates', prologController.getMcpTemplates);
+
+// ============================================
+// Telemetry API (IoT integration)
+// ============================================
+
+router.post('/telemetry/process', telemetryController.processTelemetry);
+router.get('/telemetry/status', telemetryController.getTelemetryStatus);
 
 export default router;

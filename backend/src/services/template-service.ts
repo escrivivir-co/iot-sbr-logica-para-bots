@@ -3,6 +3,11 @@
  * 
  * Manages Prolog SDK templates. In the refactored architecture,
  * templates are served locally but execution delegates to MCP Prolog Server.
+ * 
+ * Template sources (in priority order):
+ * 1. MCP Presets packs (.pack.json)
+ * 2. ARCHIVO/PLUGINS/PROLOG_EDITOR/templates
+ * 3. Built-in default templates
  */
 
 import * as fs from 'fs/promises';
@@ -10,11 +15,17 @@ import * as path from 'path';
 import { logger } from '../utils/logger';
 import type { Template, TemplateContentResponse } from '../types';
 
-// Path to local templates (for file-based templates)
-const TEMPLATES_PATH = path.join(__dirname, 'codigo', 'web', 'plugins');
+// Path to MCP Presets packs (primary source)
+const MCP_PACKS_PATH = path.resolve(__dirname, '../../../../../.github/plugins/mcp-presets/packs');
 
-// Alternative path for ARCHIVO-based templates
-const ARCHIVO_TEMPLATES_PATH = path.resolve(__dirname, '../../../../ARCHIVO/PLUGINS/PROLOG_EDITOR/templates');
+// Path to ARCHIVO-based templates
+const ARCHIVO_TEMPLATES_PATH = path.resolve(__dirname, '../../../../../ARCHIVO/PLUGINS/PROLOG_EDITOR/templates');
+
+// Path to Teatro ELENCO brains (Lucas, etc.)
+const ELENCO_BRAINS_PATH = path.resolve(__dirname, '../../../../../ARCHIVO/DISCO/TALLER/ELENCO');
+
+// Default templates path (primary source = MCP Presets packs)
+const TEMPLATES_PATH = MCP_PACKS_PATH;
 
 export class TemplateService {
   private templatesPath: string;
@@ -44,7 +55,10 @@ export class TemplateService {
         }
       }
 
-      const templateFiles = files.filter(file => file.endsWith('.template'));
+      // Support both .template and .pack.json files
+      const templateFiles = files.filter(file => 
+        file.endsWith('.template') || file.endsWith('.pack.json')
+      );
       const templates: Template[] = [];
 
       for (const templateFile of templateFiles) {
@@ -53,7 +67,37 @@ export class TemplateService {
             path.join(this.templatesPath, templateFile),
             'utf8'
           );
-          const template = JSON.parse(data) as Template;
+          const rawData = JSON.parse(data);
+          
+          // Handle different JSON formats:
+          // 1. .pack.json format: has 'id', 'name', 'description' at root level
+          // 2. .template format: has 'name', 'description', 'files', 'exports'
+          // 3. Legacy with 'pack' wrapper
+          let template: Template;
+          
+          if (rawData.pack) {
+            // Legacy pack wrapper
+            template = {
+              name: rawData.pack.name || templateFile.replace(/\.(template|pack\.json)$/, ''),
+              description: rawData.pack.description || '',
+              files: rawData.pack.files || [],
+              exports: rawData.pack.exports || [],
+              main: rawData.pack.main,
+            };
+          } else if (rawData.id || rawData.mcpServer) {
+            // Modern .pack.json format
+            template = {
+              name: rawData.name || rawData.id || templateFile.replace(/\.pack\.json$/, ''),
+              description: rawData.description || '',
+              files: rawData.files || [],
+              exports: rawData.exports || [],
+              main: rawData.main,
+            };
+          } else {
+            // Standard .template format
+            template = rawData as Template;
+          }
+          
           templates.push(template);
           logger.debug(`Loaded template: ${templateFile}`, { name: template.name });
         } catch (error) {

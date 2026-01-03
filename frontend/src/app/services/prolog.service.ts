@@ -40,6 +40,10 @@ export class PrologService {
     return this.http.post<RuleCreatedResponse>(`${this.apiUrl}/rules`, rule);
   }
 
+  getAllRules(): Observable<Rule[]> {
+    return this.http.get<Rule[]>(`${this.apiUrl}/rules`);
+  }
+
   getRules(app: string): Observable<Rule[]> {
     return this.http.get<Rule[]>(`${this.apiUrl}/rules/${app}`);
   }
@@ -74,6 +78,10 @@ export class PrologService {
 
   getMcpTemplates(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/mcp-templates`);
+  }
+
+  saveUserApp(appName: string, content: string): Observable<{message: string}> {
+    return this.http.post<{message: string}>(`${this.apiUrl}/user-app`, { appName, content });
   }
 
   // ============================================
@@ -123,5 +131,17 @@ export class PrologService {
 
   getCurrentSession(): string | null {
     return this.currentSessionId;
+  }
+
+  // ============================================
+  // Telemetry Operations (IoT)
+  // ============================================
+
+  processTelemetry(telemetry: { sensor: string; value: number | string }): Observable<any> {
+    return this.http.post(`${this.apiUrl}/telemetry/process`, { telemetry });
+  }
+
+  getTelemetryStatus(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/telemetry/status`);
   }
 }

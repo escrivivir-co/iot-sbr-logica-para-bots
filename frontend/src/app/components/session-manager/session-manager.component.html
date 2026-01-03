@@ -1,0 +1,126 @@
+<div class="session-manager card">
+  <div class="card-header d-flex justify-content-between align-items-center">
+    <h5 class="mb-0">
+      <i class="bi bi-diagram-3"></i> Session Manager
+    </h5>
+    <button class="btn btn-sm btn-outline-secondary" (click)="loadSessions()" [disabled]="isLoading">
+      <i class="bi bi-arrow-clockwise" [class.spin]="isLoading"></i>
+    </button>
+  </div>
+  
+  <div class="card-body">
+    <!-- Alerts -->
+    <div *ngIf="error" class="alert alert-danger alert-dismissible fade show" role="alert">
+      {{ error }}
+      <button type="button" class="btn-close" (click)="error = null"></button>
+    </div>
+    
+    <div *ngIf="successMessage" class="alert alert-success alert-dismissible fade show" role="alert">
+      {{ successMessage }}
+      <button type="button" class="btn-close" (click)="successMessage = null"></button>
+    </div>
+    
+    <!-- Create Session Form -->
+    <div class="create-session-form mb-4">
+      <h6>Create New Session</h6>
+      <div class="row g-2">
+        <div class="col-md-5">
+          <div class="input-group input-group-sm">
+            <input 
+              type="text" 
+              class="form-control" 
+              placeholder="Session ID"
+              [(ngModel)]="newSessionId"
+              [disabled]="isLoading">
+            <button 
+              class="btn btn-outline-secondary" 
+              type="button"
+              (click)="generateSessionId()"
+              title="Generate ID">
+              <i class="bi bi-shuffle"></i>
+            </button>
+          </div>
+        </div>
+        <div class="col-md-5">
+          <input 
+            type="text" 
+            class="form-control form-control-sm" 
+            placeholder="Obra ID (e.g., itaca-digital)"
+            [(ngModel)]="newObraId"
+            [disabled]="isLoading">
+        </div>
+        <div class="col-md-2">
+          <button 
+            class="btn btn-primary btn-sm w-100" 
+            (click)="createSession()"
+            [disabled]="isLoading || !newSessionId || !newObraId">
+            <i class="bi bi-plus-circle"></i> Create
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Current Session Indicator -->
+    <div *ngIf="currentSessionId" class="current-session-indicator mb-3">
+      <span class="badge bg-success">
+        <i class="bi bi-check-circle"></i> Active: {{ currentSessionId }}
+      </span>
+    </div>
+    
+    <!-- Sessions List -->
+    <div class="sessions-list">
+      <h6>Active Sessions ({{ sessions.length }})</h6>
+      
+      <div *ngIf="isLoading && sessions.length === 0" class="text-center py-3">
+        <div class="spinner-border spinner-border-sm" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+      
+      <div *ngIf="!isLoading && sessions.length === 0" class="text-muted text-center py-3">
+        <i class="bi bi-inbox"></i> No active sessions
+      </div>
+      
+      <div class="table-responsive" *ngIf="sessions.length > 0">
+        <table class="table table-sm table-hover">
+          <thead>
+            <tr>
+              <th>Session ID</th>
+              <th>Obra ID</th>
+              <th>Created</th>
+              <th class="text-end">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let session of sessions" 
+                [class.table-primary]="isCurrentSession(session.sessionId)">
+              <td>
+                <code>{{ session.sessionId }}</code>
+                <i *ngIf="isCurrentSession(session.sessionId)" 
+                   class="bi bi-check-circle-fill text-success ms-1"></i>
+              </td>
+              <td>{{ session.obraId || '-' }}</td>
+              <td>{{ session.createdAt | date:'short' }}</td>
+              <td class="text-end">
+                <button 
+                  class="btn btn-outline-primary btn-sm me-1"
+                  (click)="selectSession(session.sessionId)"
+                  [disabled]="isCurrentSession(session.sessionId)"
+                  title="Select as current session">
+                  <i class="bi bi-check2"></i>
+                </button>
+                <button 
+                  class="btn btn-outline-danger btn-sm"
+                  (click)="destroySession(session.sessionId)"
+                  [disabled]="isLoading"
+                  title="Destroy session">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

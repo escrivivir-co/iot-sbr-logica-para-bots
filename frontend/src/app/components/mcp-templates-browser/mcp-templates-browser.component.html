@@ -1,0 +1,86 @@
+<div class="mcp-templates-browser card">
+  <div class="card-header d-flex justify-content-between align-items-center">
+    <h5 class="mb-0">
+      <i class="bi bi-grid-3x3-gap"></i> MCP Templates
+      <span class="badge bg-info ms-2">MCP</span>
+    </h5>
+    <button class="btn btn-sm btn-outline-secondary" (click)="loadTemplates()" [disabled]="isLoading">
+      <i class="bi bi-arrow-clockwise" [class.spin]="isLoading"></i>
+    </button>
+  </div>
+  
+  <div class="card-body">
+    <!-- Error -->
+    <div *ngIf="error" class="alert alert-danger">
+      {{ error }}
+    </div>
+    
+    <!-- Search -->
+    <div class="search-box mb-3">
+      <input 
+        type="text"
+        class="form-control form-control-sm"
+        placeholder="Search templates..."
+        [(ngModel)]="searchTerm">
+    </div>
+    
+    <!-- Loading -->
+    <div *ngIf="isLoading" class="text-center py-4">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+    
+    <!-- Templates Grid -->
+    <div class="row g-2" *ngIf="!isLoading">
+      <div class="col-md-6" *ngFor="let template of filteredTemplates">
+        <div class="template-card p-2 border rounded" 
+             [class.selected]="isSelected(template)"
+             (click)="selectTemplate(template)">
+          <div class="d-flex justify-content-between align-items-start">
+            <div>
+              <strong>{{ template.name }}</strong>
+              <span *ngIf="template.category" 
+                    class="badge ms-2" 
+                    [ngClass]="getCategoryColor(template.category)">
+                {{ template.category }}
+              </span>
+            </div>
+            <button 
+              class="btn btn-sm btn-outline-primary"
+              (click)="loadTemplate(template); $event.stopPropagation()"
+              title="Load template">
+              <i class="bi bi-play-fill"></i>
+            </button>
+          </div>
+          <p class="text-muted small mb-0 mt-1" *ngIf="template.description">
+            {{ template.description }}
+          </p>
+          <div *ngIf="template.predicates && template.predicates.length > 0" class="mt-1">
+            <code class="small" *ngFor="let pred of template.predicates.slice(0, 3)">
+              {{ pred }}
+            </code>
+            <span *ngIf="template.predicates.length > 3" class="text-muted small">
+              +{{ template.predicates.length - 3 }} more
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Empty State -->
+    <div *ngIf="!isLoading && filteredTemplates.length === 0" class="text-center text-muted py-4">
+      <i class="bi bi-inbox display-6"></i>
+      <p class="mt-2">No templates found</p>
+    </div>
+    
+    <!-- Info Note -->
+    <div class="mt-3">
+      <small class="text-muted">
+        <i class="bi bi-info-circle"></i>
+        MCP templates are loaded from the Prolog MCP Server. 
+        For local SDK templates, use the Rule Editor.
+      </small>
+    </div>
+  </div>
+</div>

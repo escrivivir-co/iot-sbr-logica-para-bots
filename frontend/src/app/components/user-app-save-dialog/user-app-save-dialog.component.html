@@ -1,0 +1,70 @@
+<div class="modal-backdrop" *ngIf="isVisible" (click)="onBackdropClick($event)">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">
+          <i class="bi bi-save"></i> Save As Application
+        </h5>
+        <button type="button" class="btn-close" (click)="close()"></button>
+      </div>
+      
+      <div class="modal-body">
+        <!-- Alerts -->
+        <div *ngIf="error" class="alert alert-danger py-2">
+          <i class="bi bi-exclamation-circle"></i> {{ error }}
+        </div>
+        
+        <div *ngIf="successMessage" class="alert alert-success py-2">
+          <i class="bi bi-check-circle"></i> {{ successMessage }}
+        </div>
+        
+        <!-- App Name Input -->
+        <div class="mb-3">
+          <label class="form-label">Application Name</label>
+          <div class="input-group">
+            <input 
+              type="text"
+              class="form-control"
+              placeholder="my_prolog_app"
+              [(ngModel)]="appName"
+              [disabled]="isSaving">
+            <button 
+              class="btn btn-outline-secondary"
+              type="button"
+              (click)="suggestName()"
+              title="Generate name">
+              <i class="bi bi-magic"></i>
+            </button>
+          </div>
+          <small class="text-muted">
+            Use letters, numbers, hyphens, and underscores. Must start with a letter.
+          </small>
+        </div>
+        
+        <!-- Content Preview -->
+        <div class="mb-3">
+          <label class="form-label">Content Preview</label>
+          <pre class="content-preview">{{ getContentPreview() }}</pre>
+          <small class="text-muted">
+            {{ content.split('\n').length }} lines, {{ content.length }} characters
+          </small>
+        </div>
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="close()" [disabled]="isSaving">
+          Cancel
+        </button>
+        <button 
+          type="button" 
+          class="btn btn-primary"
+          (click)="save()"
+          [disabled]="isSaving || !appName || !content">
+          <span *ngIf="isSaving" class="spinner-border spinner-border-sm me-1"></span>
+          <i *ngIf="!isSaving" class="bi bi-save me-1"></i>
+          Save Application
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -10,13 +10,26 @@ import { PrologService } from './services/prolog.service';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { TelemetryMonitorComponent } from './components/telemetry-monitor/telemetry-monitor.component';
 
+// New MCP-aligned components (PROLOG-UI-2.0.0)
+import { SessionManagerComponent } from './components/session-manager/session-manager.component';
+import { KnowledgeBaseComponent } from './components/knowledge-base/knowledge-base.component';
+import { McpTemplatesBrowserComponent } from './components/mcp-templates-browser/mcp-templates-browser.component';
+import { UserAppSaveDialogComponent } from './components/user-app-save-dialog/user-app-save-dialog.component';
+import { TelemetryProcessComponent } from './components/telemetry-process/telemetry-process.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     RuleEditorComponent,
     RuleListComponent,
     TelemetryMonitorComponent,
-	  DashboardComponent
+    DashboardComponent,
+    // New components
+    SessionManagerComponent,
+    KnowledgeBaseComponent,
+    McpTemplatesBrowserComponent,
+    UserAppSaveDialogComponent,
+    TelemetryProcessComponent
   ],
   imports: [
     BrowserModule,

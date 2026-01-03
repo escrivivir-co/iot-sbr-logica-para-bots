@@ -1,12 +1,106 @@
-<div class="container mt-4">
-  <h1>{{ title }}</h1>
-  <div class="row">
-    <div class="col-md-12">
-      <app-rule-list [theApp]="theApp"></app-rule-list>
-    </div>
-    <div class="col-md-12">
-      <app-rule-editor (ruleSaved)="onRuleSaved($event)" (appSelected)="appSelected($event)"></app-rule-editor>
-      <app-dashboard></app-dashboard>
-    </div>	
+<div class="container-fluid mt-3">
+  <!-- Header -->
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h1>{{ title }}</h1>
+    <span class="badge bg-primary">MCP Aligned v2.0</span>
   </div>
+  
+  <!-- Navigation Tabs -->
+  <ul class="nav nav-tabs mb-3">
+    <li class="nav-item">
+      <a class="nav-link" 
+         [class.active]="activeTab === 'sessions'"
+         (click)="activeTab = 'sessions'" href="javascript:void(0)">
+        <i class="bi bi-diagram-3"></i> Sessions
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" 
+         [class.active]="activeTab === 'editor'"
+         (click)="activeTab = 'editor'" href="javascript:void(0)">
+        <i class="bi bi-code-square"></i> Editor
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" 
+         [class.active]="activeTab === 'knowledge'"
+         (click)="activeTab = 'knowledge'" href="javascript:void(0)">
+        <i class="bi bi-database"></i> Knowledge Base
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" 
+         [class.active]="activeTab === 'templates'"
+         (click)="activeTab = 'templates'" href="javascript:void(0)">
+        <i class="bi bi-grid-3x3-gap"></i> Templates
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" 
+         [class.active]="activeTab === 'telemetry'"
+         (click)="activeTab = 'telemetry'" href="javascript:void(0)">
+        <i class="bi bi-broadcast"></i> Telemetry
+      </a>
+    </li>
+  </ul>
+  
+  <!-- Tab Content -->
+  <div class="tab-content">
+    <!-- Sessions Tab -->
+    <div *ngIf="activeTab === 'sessions'" class="row">
+      <div class="col-12">
+        <app-session-manager 
+          (sessionSelected)="onSessionSelected($event)"
+          (sessionCreated)="onSessionCreated($event)">
+        </app-session-manager>
+      </div>
+    </div>
+    
+    <!-- Editor Tab -->
+    <div *ngIf="activeTab === 'editor'" class="row">
+      <div class="col-md-8">
+        <app-rule-editor 
+          (ruleSaved)="onRuleSaved($event)" 
+          (appSelected)="appSelected($event)">
+        </app-rule-editor>
+      </div>
+      <div class="col-md-4">
+        <app-rule-list [theApp]="theApp"></app-rule-list>
+      </div>
+    </div>
+    
+    <!-- Knowledge Base Tab -->
+    <div *ngIf="activeTab === 'knowledge'" class="row">
+      <div class="col-12">
+        <app-knowledge-base [sessionId]="currentSessionId"></app-knowledge-base>
+      </div>
+    </div>
+    
+    <!-- Templates Tab -->
+    <div *ngIf="activeTab === 'templates'" class="row">
+      <div class="col-12">
+        <app-mcp-templates-browser 
+          (templateLoaded)="onTemplateLoaded($event)">
+        </app-mcp-templates-browser>
+      </div>
+    </div>
+    
+    <!-- Telemetry Tab -->
+    <div *ngIf="activeTab === 'telemetry'" class="row">
+      <div class="col-md-6">
+        <app-telemetry-process></app-telemetry-process>
+      </div>
+      <div class="col-md-6">
+        <app-dashboard></app-dashboard>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Save Dialog (Global) -->
+  <app-user-app-save-dialog
+    [content]="saveDialogContent"
+    [isVisible]="showSaveDialog"
+    (saved)="onAppSaved($event)"
+    (closed)="showSaveDialog = false">
+  </app-user-app-save-dialog>
 </div>

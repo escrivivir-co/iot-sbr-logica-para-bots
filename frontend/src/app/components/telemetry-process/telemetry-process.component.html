@@ -1,0 +1,100 @@
+<div class="telemetry-process card">
+  <div class="card-header">
+    <h5 class="mb-0">
+      <i class="bi bi-broadcast"></i> Telemetry Processor
+      <span class="badge bg-success ms-2">IoT</span>
+    </h5>
+  </div>
+  
+  <div class="card-body">
+    <!-- Error -->
+    <div *ngIf="error" class="alert alert-danger py-2">
+      {{ error }}
+    </div>
+    
+    <!-- Sensor Presets -->
+    <div class="presets mb-3">
+      <label class="form-label small text-muted">Quick Presets</label>
+      <div class="btn-group flex-wrap" role="group">
+        <button 
+          *ngFor="let preset of SENSOR_PRESETS"
+          type="button"
+          class="btn btn-sm"
+          [class.btn-outline-primary]="sensorName !== preset.name"
+          [class.btn-primary]="sensorName === preset.name"
+          (click)="applyPreset(preset)">
+          {{ preset.name }}
+        </button>
+      </div>
+    </div>
+    
+    <!-- Form -->
+    <div class="row g-2 mb-3">
+      <div class="col-md-5">
+        <label class="form-label">Sensor Name</label>
+        <input 
+          type="text"
+          class="form-control"
+          placeholder="temperature"
+          [(ngModel)]="sensorName"
+          [disabled]="isProcessing">
+      </div>
+      <div class="col-md-5">
+        <label class="form-label">Value {{ getCurrentUnit() ? '(' + getCurrentUnit() + ')' : '' }}</label>
+        <div class="input-group">
+          <input 
+            type="text"
+            class="form-control"
+            placeholder="22.5"
+            [(ngModel)]="sensorValue"
+            [disabled]="isProcessing">
+          <button 
+            class="btn btn-outline-secondary"
+            type="button"
+            (click)="randomizeValue()"
+            title="Random value"
+            [disabled]="isProcessing">
+            <i class="bi bi-shuffle"></i>
+          </button>
+        </div>
+      </div>
+      <div class="col-md-2 d-flex align-items-end">
+        <button 
+          class="btn btn-success w-100"
+          (click)="process()"
+          [disabled]="isProcessing || !sensorName || !sensorValue">
+          <span *ngIf="isProcessing" class="spinner-border spinner-border-sm"></span>
+          <i *ngIf="!isProcessing" class="bi bi-send"></i>
+          Send
+        </button>
+      </div>
+    </div>
+    
+    <!-- Result -->
+    <div *ngIf="result" class="result-panel mb-3">
+      <label class="form-label small text-muted">Last Result</label>
+      <pre class="result-content">{{ result | json }}</pre>
+    </div>
+    
+    <!-- History -->
+    <div *ngIf="history.length > 0" class="history-panel">
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <label class="form-label small text-muted mb-0">Recent Telemetry</label>
+        <button class="btn btn-link btn-sm text-danger p-0" (click)="clearHistory()">
+          Clear
+        </button>
+      </div>
+      <div class="list-group list-group-flush">
+        <div *ngFor="let entry of history" 
+             class="list-group-item py-1 d-flex justify-content-between align-items-center"
+             [class.list-group-item-success]="entry.success"
+             [class.list-group-item-danger]="!entry.success">
+          <span>
+            <code>{{ entry.sensor }}</code> = <strong>{{ entry.value }}</strong>
+          </span>
+          <small class="text-muted">{{ entry.timestamp | date:'HH:mm:ss' }}</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

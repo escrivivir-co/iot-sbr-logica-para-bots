@@ -1,0 +1,107 @@
+<div class="knowledge-base card">
+  <div class="card-header">
+    <h5 class="mb-0">
+      <i class="bi bi-database"></i> Knowledge Base
+    </h5>
+  </div>
+  
+  <div class="card-body">
+    <!-- No Session Warning -->
+    <div *ngIf="!hasSession()" class="alert alert-warning">
+      <i class="bi bi-exclamation-triangle"></i>
+      No active session. Create or select a session first.
+    </div>
+    
+    <!-- Assert Fact Section -->
+    <div class="assert-section mb-4" [class.disabled]="!hasSession()">
+      <h6><i class="bi bi-plus-square"></i> Assert Fact</h6>
+      
+      <!-- Alerts -->
+      <div *ngIf="assertError" class="alert alert-danger alert-sm py-2">
+        {{ assertError }}
+      </div>
+      <div *ngIf="assertResult" class="alert alert-success alert-sm py-2">
+        {{ assertResult }}
+      </div>
+      
+      <!-- Syntax hints -->
+      <div class="syntax-hints mb-2">
+        <small class="text-muted">Examples: </small>
+        <button *ngFor="let ex of FACT_EXAMPLES" 
+                class="btn btn-link btn-sm p-0 me-2"
+                (click)="insertExample(ex)">
+          <code>{{ ex }}</code>
+        </button>
+      </div>
+      
+      <!-- Input -->
+      <div class="input-group">
+        <textarea 
+          class="form-control"
+          rows="2"
+          placeholder="Enter Prolog fact or rule (e.g., likes(mary, wine).)"
+          [(ngModel)]="factText"
+          [disabled]="isAsserting || !hasSession()"></textarea>
+        <button 
+          class="btn btn-success"
+          (click)="assertFact()"
+          [disabled]="isAsserting || !factText || !hasSession()">
+          <i class="bi bi-plus-lg" *ngIf="!isAsserting"></i>
+          <span class="spinner-border spinner-border-sm" *ngIf="isAsserting"></span>
+          Assert
+        </button>
+      </div>
+    </div>
+    
+    <hr>
+    
+    <!-- Consult File Section -->
+    <div class="consult-section" [class.disabled]="!hasSession()">
+      <h6><i class="bi bi-file-earmark-code"></i> Consult File</h6>
+      
+      <!-- Alerts -->
+      <div *ngIf="consultError" class="alert alert-danger alert-sm py-2">
+        {{ consultError }}
+      </div>
+      <div *ngIf="consultResult" class="alert alert-success alert-sm py-2">
+        {{ consultResult }}
+      </div>
+      
+      <!-- Input -->
+      <div class="input-group mb-3">
+        <input 
+          type="text"
+          class="form-control"
+          placeholder="Path to .pl file (e.g., rules/family.pl)"
+          [(ngModel)]="filePath"
+          [disabled]="isConsulting || !hasSession()">
+        <button 
+          class="btn btn-primary"
+          (click)="consultFile()"
+          [disabled]="isConsulting || !filePath || !hasSession()">
+          <i class="bi bi-file-earmark-arrow-up" *ngIf="!isConsulting"></i>
+          <span class="spinner-border spinner-border-sm" *ngIf="isConsulting"></span>
+          Consult
+        </button>
+      </div>
+      
+      <!-- Consulted Files History -->
+      <div *ngIf="consultedFiles.length > 0" class="consulted-history">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <small class="text-muted">Consulted in this session:</small>
+          <button class="btn btn-link btn-sm text-danger p-0" (click)="clearHistory()">
+            Clear
+          </button>
+        </div>
+        <div class="list-group list-group-flush">
+          <button *ngFor="let file of consultedFiles"
+                  class="list-group-item list-group-item-action py-1 d-flex justify-content-between align-items-center"
+                  (click)="reconsultFile(file)">
+            <span><i class="bi bi-file-code me-2"></i>{{ file }}</span>
+            <small class="text-muted">Re-consult</small>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

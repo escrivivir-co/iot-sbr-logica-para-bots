@@ -1,0 +1,57 @@
+.mcp-templates-browser {
+  margin-bottom: 1rem;
+}
+
+.mcp-templates-browser .card-header {
+  background-color: #fff3cd;
+}
+
+.mcp-templates-browser h5 i {
+  margin-right: 0.5rem;
+  color: #856404;
+}
+
+.template-card {
+  cursor: pointer;
+  transition: all 0.2s;
+  background-color: #fff;
+}
+
+.template-card:hover {
+  background-color: #f8f9fa;
+  border-color: #0d6efd !important;
+}
+
+.template-card.selected {
+  background-color: #e7f1ff;
+  border-color: #0d6efd !important;
+}
+
+.template-card code {
+  display: inline-block;
+  font-size: 0.75rem;
+  background-color: #f8f9fa;
+  padding: 0.1rem 0.3rem;
+  border-radius: 0.2rem;
+  margin-right: 0.25rem;
+  margin-top: 0.25rem;
+}
+
+.search-box input {
+  border-radius: 1rem;
+  padding-left: 1rem;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+.badge {
+  font-size: 0.7rem;
+  font-weight: normal;
+}

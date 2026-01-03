@@ -1,8 +1,8 @@
 /**
- * Query models - re-exported from @alephscript/mcp-core-sdk
+ * Query models - re-exported from @alephscript/mcp-core-sdk/browser
  */
 export type {
   QueryRequest,
   QueryResponse,
   QueryResult,
-} from '@alephscript/mcp-core-sdk/types/prolog';
+} from '@alephscript/mcp-core-sdk/browser';

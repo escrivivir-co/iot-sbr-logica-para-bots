@@ -1,5 +1,5 @@
 /**
- * Session models - re-exported from @alephscript/mcp-core-sdk
+ * Session models - re-exported from @alephscript/mcp-core-sdk/browser
  */
 export type {
   PrologSession,
@@ -7,4 +7,4 @@ export type {
   CreateSessionResponse,
   SessionResponse,
   ListSessionsResponse,
-} from '@alephscript/mcp-core-sdk/types/prolog';
+} from '@alephscript/mcp-core-sdk/browser';

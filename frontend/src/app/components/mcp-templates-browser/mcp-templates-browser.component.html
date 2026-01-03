@@ -39,7 +39,7 @@
              (click)="selectTemplate(template)">
           <div class="d-flex justify-content-between align-items-start">
             <div>
-              <strong>{{ template.name }}</strong>
+              <strong>{{ template.name || template.id }}</strong>
               <span *ngIf="template.category" 
                     class="badge ms-2" 
                     [ngClass]="getCategoryColor(template.category)">

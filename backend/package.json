@@ -29,6 +29,6 @@
     "typescript": "^5.4.5"
   },
   "peerDependencies": {
-    "@alephscript/mcp-core-sdk": "file:../../MCPGallery/mcp-core-sdk/alephscript-mcp-core-sdk-1.1.0.tgz"
+    "@alephscript/mcp-core-sdk": "file:../../MCPGallery/mcp-core-sdk/alephscript-mcp-core-sdk-1.2.0.tgz"
   }
 }

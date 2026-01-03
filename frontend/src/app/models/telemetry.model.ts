@@ -1,28 +1,28 @@
 /**
- * Telemetry models - re-exported from @alephscript/mcp-core-sdk
+ * Telemetry models - re-exported from @alephscript/mcp-core-sdk/browser
  */
 export type {
   Telemetry,
   TelemetryInput,
   TelemetryResult,
   TelemetryStatus,
-} from '@alephscript/mcp-core-sdk/types/prolog';
+} from '@alephscript/mcp-core-sdk/browser';
 
 /**
  * MCP Event types - for monitoring MCP operations
  */
 export type {
   MCPEvent,
-} from '@alephscript/mcp-core-sdk/types';
+} from '@alephscript/mcp-core-sdk/browser';
 
 export {
   MCPEventType,
-} from '@alephscript/mcp-core-sdk/types';
+} from '@alephscript/mcp-core-sdk/browser';
 
 /** Frontend telemetry record (mirrors backend MCPTelemetryRecord) */
 export interface MCPTelemetryRecord {
   timestamp: number;
-  event: import('@alephscript/mcp-core-sdk/types').MCPEvent;
+  event: import('@alephscript/mcp-core-sdk/browser').MCPEvent;
   duration?: number;
   metadata?: Record<string, unknown>;
 }

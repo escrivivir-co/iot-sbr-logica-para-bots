@@ -1,5 +1,5 @@
 /**
- * Prolog operation models - re-exported from @alephscript/mcp-core-sdk
+ * Prolog operation models - re-exported from @alephscript/mcp-core-sdk/browser
  */
 export type {
   AssertFactRequest,
@@ -8,6 +8,6 @@ export type {
   ConsultFileResponse,
   ApiError,
   ApiResponse,
-} from '@alephscript/mcp-core-sdk/types/prolog';
+} from '@alephscript/mcp-core-sdk/browser';
 
-export { PrologErrorType } from '@alephscript/mcp-core-sdk/types/prolog';
+export { PrologErrorType } from '@alephscript/mcp-core-sdk/browser';

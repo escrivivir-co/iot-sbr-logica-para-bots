@@ -245,8 +245,8 @@ on_turno(TurnoId) :-
     // Test query: decidir_accion(name, X)
     this.prologService.runRule(`decidir_accion(${name}, X)`, this.sessionId).subscribe({
       next: (response) => {
-        if (response.success) {
-          this.testResult = `✅ Test passed! Action: ${JSON.stringify(response.result)}`;
+        if (response.success && response.payload && response.payload.length > 0) {
+          this.testResult = `✅ Test passed! Action: ${JSON.stringify(response.payload)}`;
         } else {
           this.testError = `Query returned false or no results`;
         }

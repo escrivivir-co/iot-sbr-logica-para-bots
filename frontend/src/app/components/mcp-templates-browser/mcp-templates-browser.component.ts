@@ -2,8 +2,11 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { PrologService } from '../../services/prolog.service';
 
 interface McpTemplate {
-  name: string;
+  id: string;
   description?: string;
+  path?: string;
+  // Legacy fields (not in SDK, but may be in local templates)
+  name?: string;
   category?: string;
   predicates?: string[];
 }
@@ -73,11 +76,12 @@ export class McpTemplatesBrowserComponent implements OnInit {
     }
     
     const term = this.searchTerm.toLowerCase();
-    return this.templates.filter(t => 
-      t.name.toLowerCase().includes(term) ||
-      (t.description && t.description.toLowerCase().includes(term)) ||
-      (t.category && t.category.toLowerCase().includes(term))
-    );
+    return this.templates.filter(t => {
+      const identifier = t.name || t.id;
+      return identifier.toLowerCase().includes(term) ||
+        (t.description && t.description.toLowerCase().includes(term)) ||
+        (t.category && t.category.toLowerCase().includes(term));
+    });
   }
 
   /**
@@ -92,7 +96,8 @@ export class McpTemplatesBrowserComponent implements OnInit {
    */
   loadTemplate(template: McpTemplate): void {
     // Get template content which auto-creates session
-    this.prologService.getTemplateContent(template.name).subscribe({
+    const templateId = template.name || template.id;
+    this.prologService.getTemplateContent(templateId).subscribe({
       next: (response) => {
         this.templateLoaded.emit(template);
       },
@@ -106,7 +111,9 @@ export class McpTemplatesBrowserComponent implements OnInit {
    * Check if template is selected
    */
   isSelected(template: McpTemplate): boolean {
-    return this.selectedTemplate?.name === template.name;
+    const selectedId = this.selectedTemplate?.name || this.selectedTemplate?.id;
+    const templateId = template.name || template.id;
+    return selectedId === templateId;
   }
 
   /**

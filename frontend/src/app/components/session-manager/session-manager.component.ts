@@ -99,9 +99,14 @@ export class SessionManagerComponent implements OnInit, OnDestroy {
         this.loadSessions();
         
         // Auto-select the new session
-        if (response.session) {
-          this.selectSession(response.session.sessionId);
-          this.sessionCreated.emit(response.session);
+        if (response.sessionId) {
+          this.selectSession(response.sessionId);
+          this.sessionCreated.emit({
+            sessionId: response.sessionId,
+            obraId: response.obraId || '',
+            createdAt: response.createdAt || new Date().toISOString(),
+            lastUsedAt: response.createdAt || new Date().toISOString()
+          });
         }
       },
       error: (err) => {

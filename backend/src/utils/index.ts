@@ -1,4 +1,4 @@
 /**
  * Utils barrel export
  */
-export { logger, getLogger } from './logger';
+export { logger } from './logger';

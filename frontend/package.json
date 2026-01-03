@@ -10,7 +10,7 @@
   },
   "private": true,
   "dependencies": {
-    "@alephscript/mcp-core-sdk": "file:../../MCPGallery/mcp-core-sdk/alephscript-mcp-core-sdk-1.0.2.tgz",
+    "@alephscript/mcp-core-sdk": "file:../../MCPGallery/mcp-core-sdk/alephscript-mcp-core-sdk-1.1.0.tgz",
     "@angular-devkit/build-angular": "^18.2.4",
     "@angular/animations": "^18.2.4",
     "@angular/cli": "^18.2.4",
